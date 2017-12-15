@@ -1,11 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe UserController, type: :controller do
+RSpec.describe UsersController, type: :controller do
 
   let(:user) {create :user}
 
   describe 'Get Show' do
-    render_views
     context 'when logged in' do
       it 'respond with success' do
         sign_in user

@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   #Ressources
-  resources :user, only: :show
+  resources :users, only: :show do
+    resources :payments
+  end
 
   # Static pages
   get 'home/index'
