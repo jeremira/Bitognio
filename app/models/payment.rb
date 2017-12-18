@@ -4,36 +4,37 @@ class Payment < ApplicationRecord
   validates :via,    presence: true
   validates :amount, numericality: {greater_than: 0}
 
-  def process_stripe_charge(amount, email, token)
+  #Process stripe payment and return a new Payment instance pre-populated
+  def self.process_stripe_charge(options={})
+    user_id = options[:user_id]
+    amount  = options[:amount]
+    token   = options[:token]
+    payment_processed = false
+    error_message = nil
     begin
-      customer = Stripe::Customer.create(
-        :email => email,
-        :source  => token
-      )
+      # Charge the user's card:
       charge = Stripe::Charge.create(
-        :customer    => customer.id,
-        :amount      => amount,
-        :description => 'French lesson',
-        :currency    => 'usd'
+        :amount => amount,
+        :currency => "usd",
+        :description => "Lesson charge",
+        :source => token,
       )
     rescue Stripe::CardError => e
-      amount_payed = 0
-      error =  e.message
+      amount = 0
+      error_message =  e.message
     rescue
-      raise 'Error Stripe'
+      amount = 0
+      error_message =  "Invalid Argument : #{options.inspect}"
     else
-      error = 'NONE'
-      amount_payed = amount
+      payment_processed = true
     end
-    self.attributes = { via: 'stripe',
-                        amount: amount_payed,
-                        error: error }
-    if self.save
-      self
-    else
-      false
-    end
-    
+
+    Payment.new(via: 'stripe',
+                amount: amount,
+                user_id: user_id,
+                payment_processed: payment_processed,
+                error_message: error_message)
+
    end
 
 end

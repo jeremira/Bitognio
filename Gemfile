@@ -45,6 +45,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.6'
   gem 'guard-rspec', require: false
   gem "factory_bot_rails", "~> 4.0"
+  gem 'stripe-ruby-mock', '~> 2.5.0', :require => 'stripe_mock'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
