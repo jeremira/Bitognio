@@ -5,10 +5,15 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    amount = 3000
-    payment = current_user.payments.build
-    payment.process_stripe_charge(amount, params[:stripeEmail], params[:stripeToken])
-    #handle flash message depending of payment:message
+    amount = params[:amount].to_i
+    token  = params[:stripeToken]
+    payment_info = current_user.make_a_payment_with_stripe(amount, {token: token} )
+    @payment =  Payment.new(payment_info)
+    if @payment.save
+      #flash message > Processed payment OR failed payment possible
+    else
+      #No flash here ? something went very wrong...
+    end
     redirect_to current_user
   end
 
