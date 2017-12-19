@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bitognio</title>
+    <title>Bitognio - French lesson at home</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,8 +9,42 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+
+    <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
+      <%= link_to 'Bitognio', root_path, class: "navbar-brand" %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <%= link_to 'Infos', '#', class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Contact', '#', class: 'nav-link' %>
+          </li>
+          <% if current_user %>
+            <li class="nav-item">
+              <%= link_to 'Mon compte', user_path(current_user), class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to 'Se connecter', new_user_session_path, class: 'nav-link' %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+    <section id='flash-container'>
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+    </section>
     <%= yield %>
+    <footer>
+      Bitognio, (c)2017
+    </footer>
   </body>
 </html>
