@@ -4,6 +4,10 @@ class PaymentsController < ApplicationController
   def index
   end
 
+  def new
+    @amount = params[:amount] ||= 0
+  end
+
   def create
     amount = params[:amount].to_i
     token  = params[:stripeToken]

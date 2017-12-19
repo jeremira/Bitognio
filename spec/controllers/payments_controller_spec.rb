@@ -4,7 +4,7 @@ RSpec.describe PaymentsController, type: :controller do
   let(:user)    {create :user}
   let(:payment) {create :payment, user: user}
 
-  describe 'Get Index' do
+  describe 'GET index' do
     context 'when logged in' do
       before :each { sign_in user }
       it 'respond with success' do
@@ -15,6 +15,22 @@ RSpec.describe PaymentsController, type: :controller do
     context 'when NOT logged in' do
       it 'redirect to sign-in page' do
         get :index
+        expect(response).to redirect_to new_user_session_path
+      end
+    end
+  end
+
+  describe 'GET new' do
+    context 'when logged in' do
+      before :each { sign_in user }
+      it 'respond with success' do
+        get :new
+        expect(response).to have_http_status :success
+      end
+    end
+    context 'when NOT logged in' do
+      it 'redirect to sign-in page' do
+        get :new
         expect(response).to redirect_to new_user_session_path
       end
     end
