@@ -1,0 +1,10 @@
+ @import "bootstrap";
+ @import "font-awesome";
+ @import "mixins";
+ @import "variables";
+
+body{
+  color: #fff;
+  background-color: $color-sky;
+  font-family: $font-stack;
+}
