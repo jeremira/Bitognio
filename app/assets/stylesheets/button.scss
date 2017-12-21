@@ -1,0 +1,15 @@
+.btn-custom {
+  background-color: #fff;
+  color: #000;
+  border: 3px solid #000;
+  font-size: 1.3em;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 4px 60px;
+  border-radius: 0;
+}
+
+.btn-custom:hover,
+.btn-custom:focus {
+  background-color: $color-blue;
+}

@@ -1,0 +1,21 @@
+.top-hat {
+  height: 150px;
+  position: relative;
+}
+
+.root-header {
+  font-size: 8em;
+  font-weight: 900;
+  line-height: 1em;
+  position: absolute;
+  bottom: -10px;
+  left: -10px;
+  margin: 0;
+  padding: 0;
+}
+
+.main-block {
+  background-color: $color-yellow;
+  height: 100%;
+  position: relative;
+}

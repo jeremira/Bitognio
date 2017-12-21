@@ -1,0 +1,21 @@
+
+
+.flash-section {
+  text-align: left;
+  font-weight: 600;
+  color: #fff;
+  font-size: 14px;
+  line-height: 15px;
+}
+
+.flash-notice {
+  background-color: $color-green;
+  border: 3px solid #fff;
+  padding: 10px 25px;
+}
+
+.flash-alert {
+  background-color: $color-red;
+  border: 3px solid #fff;
+  padding: 10px 25px;
+}

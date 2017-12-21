@@ -11,7 +11,7 @@
   </head>
   <body>
     <!-- navigation bar -->
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <nav class="navbar navbar-expand-md navbar-light">
       <a class="navbar-brand" href="#">Bitognio</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -34,10 +34,56 @@
       </div>
     </nav>
 
+    <section class="flash-section container-fluid">
+      <% if notice %>
+        <div class="row">
+          <div class="col-xs-10 col-md-6 offset-md-3 flash-notice">
+            <p><%= notice %></p>
+          </div>
+        </div>
+      <% end %>
+      <% if alert %>
+        <div class="row">
+          <div class="col-xs-10 col-md-6 offset-md-3 flash-alert">
+            <p><%= alert %></p>
+          </div>
+        </div>
+      <% end %>
+    </section>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <section class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-6 offset-md-6">
+          <div class="top-hat">
+            <h1 class="root-header">Bitognio</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="main-block container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-6 offset-md-6">
+          <h1>Main title h1</h1>
+          <h2>Second title h2</h2>
+          <h3>Another longer title h3</h3>
+          <h4>Le petit titre pas trop gros </h4>
+          <h5>Il est mignon c'est tout jolie le kaiwai h5 </h5>
+          <h6>Oh mais c'est du texte ? main non c'est un petit titre tout petit que c'est le h6! </h6>
+          <p>Le Japon possède une culture gastronomique extraordinaire. Les Japonais sont gourmands et les repas sont un moment important
+          dans la culture japonaise. Influencé par la Chine et la Corée, mais aussi par la cuisine occidentale, le Japon a réussi un savant
+          mélange entre tradition et modernité.</p>
+          <p class="mini-text">Le Japon possède une culture gastronomique extraordinaire. Les Japonais sont gourmands et les repas sont un moment important
+          dans la culture japonaise. Influencé par la Chine et la Corée, mais aussi par la cuisine occidentale, le Japon a réussi un savant
+          mélange entre tradition et modernité.</p>
+          <button class="btn btn-sm btn-custom">Connect</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-block container-fluid">
+
+    </section>
     <%= yield %>
-    <div class="btn btn-block btn-success">BABAR</div>
   </body>
 </html>
