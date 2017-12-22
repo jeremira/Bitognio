@@ -5,3 +5,48 @@ $color-red: #FA7C92;
 $color-green: #66AB8C;
 $color-blue: #6EC4DB;
 $color-grey: #ECECEC;
+
+.color-yellow {
+  color: $color-yellow;
+}
+.color-grey {
+  color: $color-grey;
+}
+.color-darkgrey {
+  color: grey;
+}
+.color-red {
+  color: $color-red;
+}
+.color-green {
+  color: $color-green;
+}
+.color-blue {
+  color: $color-blue;
+}
+
+.back-yellow {
+  background-color: $color-yellow;
+}
+.back-red {
+  background-color: $color-red;
+}
+.back-blue {
+  background-color: $color-blue;
+}
+.back-green {
+  background-color: $color-green;
+}
+
+.separate-yellow {
+  border-bottom: 4px solid $color-yellow;
+}
+.separate-red {
+  border-bottom: 4px solid $color-red;
+}
+.separate-green {
+  border-bottom: 4px solid $color-green;
+}
+.separate-blue {
+  border-bottom: 4px solid $color-blue  ;
+}

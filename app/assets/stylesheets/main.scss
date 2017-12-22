@@ -1,4 +1,4 @@
-* {
+.debug {
   border: 1px solid red;
 }
 
@@ -35,18 +35,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 900;
 }
 
-
-@media (min-width: 768px) {
-  .navbar {
-    margin: 10px 85px;
-  }
-}
-
-.nav-link {
-  text-transform: uppercase;
-  line-height: 2em;
-  letter-spacing: 2px;
-  font-weight: 400;
-  font-size: 1.5em;
+.no-decoration {
   text-decoration: none !important;
 }
