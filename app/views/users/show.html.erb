@@ -1,4 +1,81 @@
-CHOOSE YOUR PLAN :
-  form who send you to payment new
+<section class="content-block container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 offset-md-3">
+      <h4 class="separate-red">
+        <span class="fa-stack color-red">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-home fa-stack-1x"></i>
+        </span>
+        Vous avez <%= @payed_hours %> heures disponibles.
+      </h4>
+      <p>Vous pouvez blabla, compte debité apres ok blabla bla blablabla.</p>
+      <%= link_to 'Effectuer un nouveau paiement', '#' %> | <%= link_to 'Historique des paiements', '#' %>
+    </div>
+  </div>
+</section>
+
+<section class="content-block container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 offset-md-3">
+      <h4 class="separate-green">
+        <span class="fa-stack color-green">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-home fa-stack-1x"></i>
+        </span>
+        Effectuer un paiement
+      </h4>
+      <p>Choisissez le pack que tu veux ta mere, ca debite cest trop ouf !</p>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-xs-12 col-md-3">
+      <div class="intro-quarter text-center">
+        <span class="fa-stack fa-4x color-red">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-home fa-stack-1x"></i>
+        </span>
+        <h3 class="separate-red">1 heure</h3>
+        <%= link_to 'Payer 3000 Y', new_payment_path(amount: 3000), class: 'btn btn-block btn-custom' %>
+        <p class="separate-red">Trop cool tranquille les leçon qui roks du poney</p>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-3">
+      <div class="intro-quarter text-center">
+        <span class="fa-stack fa-4x color-blue">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-home fa-stack-1x"></i>
+        </span>
+        <h3 class="separate-blue">5 heures</h3>
+        <%= link_to 'Payer 15000 Y', new_payment_path(amount: 15000), class: 'btn btn-block btn-custom' %>
+        <p class="separate-blue">Trop cool tranquille les leçon qui roks du poney</p>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-3">
+      <div class="intro-quarter text-center">
+        <span class="fa-stack fa-4x color-yellow">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-home fa-stack-1x"></i>
+        </span>
+        <h3 class="separate-yellow">10 heures</h3>
+        <%= link_to 'Payer 30000 Y', new_payment_path(amount: 30000), class: 'btn btn-block btn-custom' %>
+        <p class="separate-yellow">Trop cool tranquille les leçon qui roks du poney</p>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-3">
+      <div class="intro-quarter text-center">
+        <span class="fa-stack fa-4x color-green">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-home fa-stack-1x"></i>
+        </span>
+        <h3 class="separate-green">50 heures</h3>
+        <%= link_to 'Payer 150000 Y', new_payment_path(amount: 150000), class: 'btn btn-block btn-custom' %>
+        <p class="separate-green">Trop cool tranquille les leçon qui roks du poney</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
   <%= link_to 'Pay one lesson', new_payment_path(amount: 3000) %>
   <%= link_to 'Pay ten lesson', new_payment_path(amount: 30000) %>
