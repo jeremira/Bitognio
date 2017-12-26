@@ -29,12 +29,21 @@
           <li class="nav-item">
             <%= link_to 'Contact', root_path(anchor: 'contact'), class: 'nav-link separate-yellow' %>
           </li>
-          <li class="nav-item">
-            <%= link_to 'Mon compte', root_path(anchor: 'compte'), class: 'nav-link separate-red' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: 'nav-link separate-blue' %>
-          </li>
+          <% if current_user %>
+            <li class="nav-item">
+              <%= link_to 'Mon compte', current_user, class: 'nav-link separate-red' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: 'nav-link separate-blue' %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to 'Se connecter', new_user_session_path, class: 'nav-link separate-red' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Créer un compte', new_user_registration_path, class: 'nav-link separate-blue' %>
+            </li>
+          <% end %>
         </ul>
       </div>
     </nav>
@@ -56,46 +65,30 @@
       <% end %>
     </section>
 
+    <%= yield %>
+
     <section class="container-fluid">
       <div class="row">
         <div class="col-xs-12 col-md-6 offset-md-6">
           <div class="top-hat">
-            <h1 class="root-header separate-red">Bitognio</h1>
+            <h1 class="root-header">Bitognio</h1>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="main-block container-fluid">
+    <section class="main-block container-fluid root-background tagline">
       <div class="row">
         <div class="col-xs-12 col-md-6 offset-md-6">
           <h1 class="top-hat">Main title h1</h1>
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12 col-md-3">
-          <div class="intro-quarter text-center">
-            <span class="fa-stack fa-4x color-red">
-              <i class="fa fa-square-o fa-stack-2x"></i>
-              <i class="fa fa-home fa-stack-1x"></i>
-            </span>
-            <h3 class="separate-red">A la maison</h3>
-            <p>Trop cool tranquille les leçon qui roks du poney</p>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3">
-          <div class="intro-quarter text-center">
-            <span class="fa-stack fa-4x color-green">
-              <i class="fa fa-square-o fa-stack-2x"></i>
-              <i class="fa fa-child fa-stack-1x"></i>
-            </span>
-            <h3 class="separate-green">A la maison</h3>
-            <p>Trop cool tranquille les leçon qui roks du poney</p>
-          </div>
-        </div>
         <div class="col-xs-12 col-sm-6 col-md-6">
           <h2 class="separate-blue">Truc de ouf que c'est tres cool !</h2>
-          <h6>Oh mais c'est du texte ? main non c'est un petit</h6>
+          <h6>Oh mais c'est du texte ? main non c'est un petit sdsqdsq
+          dsqd d qsd qskjd qs dqsk dqks d sdkqsdkjqsd qsk dsq kdk sdkq onerr
+        dq sd qsdqs kdsq d</h6>
           <div class="row">
             <div class="col-xs-12 col-md-6">
               <button class="btn btn-block btn-custom">Connect</button>
@@ -105,7 +98,25 @@
             </div>
           </div>
         </div>
+        <div class="col-xs-12 col-md-3">
+          <div class="intro-quarter text-center">
+            <span class="fa-stack fa-4x color-blue">
+              <i class="fa fa-square-o fa-stack-2x"></i>
+              <i class="fa fa-home fa-stack-1x"></i>
+            </span>
+            <h3 class="separate-blue">A la maison</h3>
+            <p>Trop cool tranquille les leçon qui roks du poney</p>
+          </div>
+        </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
+          <div class="intro-quarter text-center">
+            <span class="fa-stack fa-4x color-red">
+              <i class="fa fa-square-o fa-stack-2x"></i>
+              <i class="fa fa-child fa-stack-1x"></i>
+            </span>
+            <h3 class="separate-red">A la maison</h3>
+            <p>Trop cool tranquille les leçon qui roks du poney</p>
+          </div>
         </div>
       </div>
     </section>
@@ -123,11 +134,21 @@
       <div class="row">
         <div class="col-xs-12 col-md-3">
           <div class="intro-quarter text-center">
-            <span class="fa-stack fa-4x color-red">
+            <span class="fa-stack fa-4x color-blue">
               <i class="fa fa-square-o fa-stack-2x"></i>
               <i class="fa fa-home fa-stack-1x"></i>
             </span>
-            <h3 class="separate-red">A la maison</h3>
+            <h3 class="separate-blue">A la maison</h3>
+            <p>Trop cool tranquille les leçon qui roks du poney</p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-3">
+          <div class="intro-quarter text-center">
+            <span class="fa-stack fa-4x color-green">
+              <i class="fa fa-square-o fa-stack-2x"></i>
+              <i class="fa fa-home fa-stack-1x"></i>
+            </span>
+            <h3 class="separate-green">A la maison</h3>
             <p>Trop cool tranquille les leçon qui roks du poney</p>
           </div>
         </div>
@@ -143,21 +164,11 @@
         </div>
         <div class="col-xs-12 col-md-3">
           <div class="intro-quarter text-center">
-            <span class="fa-stack fa-4x color-red">
+            <span class="fa-stack fa-4x color-yellow">
               <i class="fa fa-square-o fa-stack-2x"></i>
               <i class="fa fa-home fa-stack-1x"></i>
             </span>
-            <h3 class="separate-red">A la maison</h3>
-            <p>Trop cool tranquille les leçon qui roks du poney</p>
-          </div>
-        </div>
-        <div class="col-xs-12 col-md-3">
-          <div class="intro-quarter text-center">
-            <span class="fa-stack fa-4x color-red">
-              <i class="fa fa-square-o fa-stack-2x"></i>
-              <i class="fa fa-home fa-stack-1x"></i>
-            </span>
-            <h3 class="separate-red">A la maison</h3>
+            <h3 class="separate-yellow">A la maison</h3>
             <p>Trop cool tranquille les leçon qui roks du poney</p>
           </div>
         </div>
@@ -165,6 +176,6 @@
       <div class="row">
       </div>
     </section>
-    <%= yield %>
+
   </body>
 </html>
