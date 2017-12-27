@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe User  do
-  let(:user) {build :user}
+  let(:user)    {build :user}
   it "has a valid factory" do
     expect(user).to be_valid
   end
@@ -67,12 +67,6 @@ describe User  do
                                payment_processed: false, error_message: 'Internal Error : No token provided'}
         expect(payment_information).to eq expected_stuff
       end
-
     end
-
-
-
   end
-
-
 end

@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   has_many :payments
+  has_one  :account
+
+  before_create :create_account_child
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -31,6 +34,11 @@ class User < ApplicationRecord
     end
     return {user_id: self.id, via: 'stripe', amount: amount,
            payment_processed: payment_processed, error_message: error_message}
+  end
+
+  def create_account_child
+    build_account
+    true
   end
 
 end

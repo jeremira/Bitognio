@@ -11,10 +11,15 @@ class PaymentsController < ApplicationController
   def create
     amount = params[:amount].to_i
     token  = params[:stripeToken]
+
     payment_info = current_user.make_a_payment_with_stripe(amount, {token: token} )
+    if payment_info[:payment_processed] #Update account balance if Payment was done OK
+      current_user.account.update_balance amount
+    end
+    
     @payment =  Payment.new(payment_info)
     if @payment.save
-      #flash message > Processed payment OR failed payment possible
+      flash[:notice] = 'Balance : ' + current_user.account.balance.to_s
     else
       #No flash here ? something went very wrong...
     end
