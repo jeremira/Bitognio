@@ -12,7 +12,11 @@
     <section class="main-block container-fluid root-background tagline">
       <div class="row">
         <div class="col-xs-12 col-md-6 offset-md-6">
-          <h1 class="top-hat">Main title h1</h1>
+          <% if current_user %>
+            <h1 class="top-hat"><%= current_user.email %></h1>
+          <% else %>
+            <h1 class="top-hat">Main title h1</h1>
+          <% end %>
         </div>
       </div>
       <div class="row">

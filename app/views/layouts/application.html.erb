@@ -23,25 +23,31 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <%= link_to 'Infos', root_path, class: 'nav-link separate-green' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Contact', root_path(anchor: 'contact'), class: 'nav-link separate-yellow' %>
-          </li>
           <% if current_user %>
             <li class="nav-item">
-              <%= link_to 'Mon compte', current_user, class: 'nav-link separate-red' %>
+              <%= link_to 'Lessons', root_path, class: 'nav-link separate-green' %>
             </li>
             <li class="nav-item">
-              <%= link_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: 'nav-link separate-blue' %>
+              <%= link_to 'Payments', root_path(anchor: 'contact'), class: 'nav-link separate-yellow' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'My account', current_user, class: 'nav-link separate-red' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link separate-blue' %>
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to 'Se connecter', new_user_session_path, class: 'nav-link separate-red' %>
+              <%= link_to 'Informations', root_path, class: 'nav-link separate-green' %>
             </li>
             <li class="nav-item">
-              <%= link_to 'Créer un compte', new_user_registration_path, class: 'nav-link separate-blue' %>
+              <%= link_to 'Contact', root_path(anchor: 'contact'), class: 'nav-link separate-yellow' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Log in', new_user_session_path, class: 'nav-link separate-red' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Signup', new_user_registration_path, class: 'nav-link separate-blue' %>
             </li>
           <% end %>
         </ul>

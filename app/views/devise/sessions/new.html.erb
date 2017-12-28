@@ -6,7 +6,7 @@
         <i class="fa fa-square-o fa-stack-2x"></i>
         <i class="fa fa-home fa-stack-1x"></i>
         </span>
-        Se connecter
+        Log in to Bitognio
       </h3>
     </div>
   </div>
@@ -16,20 +16,20 @@
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <%= devise_error_messages! %>
         <div class="form-group">
-          <%= f.email_field :email, autofocus: true, placeholder: 'Entrez votre email',
+          <%= f.email_field :email, autofocus: true, placeholder: 'Enter your email',
                              class:'form-control' %>
         </div>
         <div class="form-group">
-          <%= f.password_field :password, autocomplete: "off", placeholder: 'Entrez votre mot de passe',
+          <%= f.password_field :password, autocomplete: "off", placeholder: 'Enter your password',
                                 class:'form-control' %>
         </div>
         <% if devise_mapping.rememberable? -%>
           <div class="form-check text-center">
             <%= f.check_box :remember_me, checked: true, class: 'form-check-input' %>
-            <%= f.label :remember_me, 'Se souvenir de moi', class:'form-check-label' %>
+            <%= f.label :remember_me, 'Remember me', class:'form-check-label' %>
           </div>
         <% end %>
-        <%= f.submit "Se connecter !", class:'btn btn-custom btn-block' %>
+        <%= f.submit "Log in", class:'btn btn-custom btn-block' %>
       <% end %>
     </div>
   </div>

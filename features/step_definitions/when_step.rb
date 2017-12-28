@@ -1,0 +1,40 @@
+After do |scenario|
+  #save_and_open_page if scenario.failed?
+end
+
+Given /^I am a registered student$/ do
+  visit root_path
+  click_link 'Signup'
+  fill_in :user_email, with: 'student@cucumber.com'
+  fill_in :user_password, with: 'password1234'
+  fill_in :user_password_confirmation, with: 'password1234'
+  click_button 'Signup'
+  click_link 'Log out'
+end
+
+Given /^I am on the home page$/ do
+  visit root_path
+end
+
+Given /^I click on (.+) '(.+)'$/ do |cliker, name|
+  if cliker == 'button'
+    click_button name, match: :first
+  elsif cliker == 'link'
+    click_link name, match: :first
+  else
+    fail "#{cliker} is not a valid cliker"
+  end
+end
+
+Given /^I fill in and submit signup form with '(.+)' and '(.+)'$/ do |email, password|
+  fill_in :user_email, with: email
+  fill_in :user_password, with: password
+  fill_in :user_password_confirmation, with: password
+  click_button 'Signup'
+end
+
+Given /^I fill in and submit log in form with '(.+)' and '(.+)'$/ do |email, password|
+  fill_in :user_email, with: email
+  fill_in :user_password, with: password
+  click_button 'Log in'
+end
