@@ -30,9 +30,18 @@ p {
 
 h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
-  line-height: 2em;
-  letter-spacing: 2px;
+  line-height: 1.3em;
+  letter-spacing: 1.2px;
   font-weight: 900;
+}
+
+@media (min-width: 768px) {
+  h1, h2, h3, h4, h5, h6 {
+    text-transform: uppercase;
+    line-height: 2em;
+    letter-spacing: 2px;
+    font-weight: 900;
+  }
 }
 
 .no-decoration {

@@ -4,12 +4,25 @@ end
 
 Given /^I am a registered student$/ do
   visit root_path
-  click_link 'Signup'
+  click_link 'Signup', match: :first
   fill_in :user_email, with: 'student@cucumber.com'
   fill_in :user_password, with: 'password1234'
   fill_in :user_password_confirmation, with: 'password1234'
-  click_button 'Signup'
+  click_button 'Signup', match: :first
   click_link 'Log out'
+end
+
+Given /^I am logged in$/ do
+  visit root_path
+  click_link 'Log in', match: :first
+  fill_in :user_email, with: 'student@cucumber.com'
+  fill_in :user_password, with: 'password1234'
+  click_button 'Log in'
+end
+
+Given /^I am logged out$/ do
+  visit root_path
+  click_link 'Log out', match: :first
 end
 
 Given /^I am on the home page$/ do

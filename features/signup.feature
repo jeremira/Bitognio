@@ -5,4 +5,4 @@ Scenario: A student succesfully create a new account
   When I click on link 'Signup'
   And I fill in and submit signup form with 'valid@cucumber.com' and 'password1234'
   Then I should see 'Welcome! You have signed up successfully.'
-  And I should be logged-in
+  And I should be logged in

@@ -9,106 +9,46 @@
       </div>
     </section>
 
-    <section class="main-block container-fluid root-background tagline">
-      <div class="row">
+    <section class="main-block container-fluid root-background bot-space">
+      <div class="row bot-space tagline">
         <div class="col-xs-12 col-md-6 offset-md-6">
-          <% if current_user %>
-            <h1 class="top-hat"><%= current_user.email %></h1>
-          <% else %>
-            <h1 class="top-hat">Main title h1</h1>
-          <% end %>
+            <h1>Online French Lessons</h1>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-6">
-          <h2 class="separate-blue">Truc de ouf que c'est tres cool !</h2>
-          <h6>Oh mais c'est du texte ? main non c'est un petit sdsqdsq
-          dsqd d qsd qskjd qs dqsk dqks d sdkqsdkjqsd qsk dsq kdk sdkq onerr
-        dq sd qsdqs kdsq d</h6>
+          <h2 class="separate-blue tagline">Learn french online from your home via Skype.</h2>
+          <% if current_user %>
+            <h6 class="tagline">Plan your lessons now !</h6>
+          <% else %>
+            <h6 class="tagline">Signup and enjoy a free trial !</h6>
+          <% end %>
           <div class="row">
-            <div class="col-xs-12 col-md-6">
-              <button class="btn btn-block btn-custom">Connect</button>
-            </div>
-            <div class="col-xs-12 col-md-6">
-              <button class="btn btn-block btn-custom">Connect</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-12 col-md-3">
-          <div class="intro-quarter text-center">
-            <span class="fa-stack fa-4x color-blue">
-              <i class="fa fa-square-o fa-stack-2x"></i>
-              <i class="fa fa-home fa-stack-1x"></i>
-            </span>
-            <h3 class="separate-blue">A la maison</h3>
-            <p>Trop cool tranquille les leçon qui roks du poney</p>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3">
-          <div class="intro-quarter text-center">
-            <span class="fa-stack fa-4x color-red">
-              <i class="fa fa-square-o fa-stack-2x"></i>
-              <i class="fa fa-child fa-stack-1x"></i>
-            </span>
-            <h3 class="separate-red">A la maison</h3>
-            <p>Trop cool tranquille les leçon qui roks du poney</p>
+            <% if current_user %>
+              <div class="col-xs-12 col-md-6">
+                <%= link_to 'Lessons', current_user, class: 'btn btn-custom btn-block' %>
+              </div>
+              <div class="col-xs-12 col-md-6">
+                <%= link_to 'Contact', root_path(anchor: 'contact'), class: 'btn btn-custom btn-block' %>
+              </div>
+            <% else %>
+              <div class="col-xs-12 col-md-6">
+                <%= link_to 'Log in', new_user_session_path, class: 'btn btn-custom btn-block' %>
+              </div>
+              <div class="col-xs-12 col-md-6">
+                <%= link_to 'Signup', new_user_registration_path, class: 'btn btn-custom btn-block' %>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="content-block container-fluid">
-      <div class="row">
-        <div class="col-xs-12 col-md-8 offset-md-2">
-          <h1 class="separate-red">Babar en string</h1>
-          <p>pdjsnd qs dnqs dqs dqsl kdqsl d, sqld sqdsqdlq sdq dqsd qsd qs qsd dsq dlqsl d,kd ,qsld
-            odqs  dakd qs:d; azm d!a;zdaz d;qs ; az2dad
-             az ;azda, dazld,az d,azd,lazkjela zehazi eha ea e azoe azoe aze o</p>
-          <h6>kjndsqkdjnsq   qsksd sqkdqs dkq sdk</h6>
+    <section class="container-fluid bot-space">
+      <div class="row" id="contact">
+        <div class="col-xs-12 col-md-6 offset-md-3">
+          <h1 class="separate-yellow">To contact us :</h1>
+          <h5>Form to implement here</h5>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12 col-md-3">
-          <div class="intro-quarter text-center">
-              <span class="fa-stack fa-4x color-blue">
-                <i class="fa fa-square-o fa-stack-2x"></i>
-                <i class="fa fa-home fa-stack-1x"></i>
-              </span>
-            <h3 class="separate-blue">A la maison</h3>
-            <p>Trop cool tranquille les leçon qui roks du poney</p>
-          </div>
-        </div>
-        <div class="col-xs-12 col-md-3">
-          <div class="intro-quarter text-center">
-            <span class="fa-stack fa-4x color-green">
-              <i class="fa fa-square-o fa-stack-2x"></i>
-              <i class="fa fa-home fa-stack-1x"></i>
-            </span>
-            <h3 class="separate-green">A la maison</h3>
-            <p>Trop cool tranquille les leçon qui roks du poney</p>
-          </div>
-        </div>
-        <div class="col-xs-12 col-md-3">
-          <div class="intro-quarter text-center">
-            <span class="fa-stack fa-4x color-red">
-              <i class="fa fa-square-o fa-stack-2x"></i>
-              <i class="fa fa-home fa-stack-1x"></i>
-            </span>
-            <h3 class="separate-red">A la maison</h3>
-            <p>Trop cool tranquille les leçon qui roks du poney</p>
-          </div>
-        </div>
-        <div class="col-xs-12 col-md-3">
-          <div class="intro-quarter text-center">
-            <span class="fa-stack fa-4x color-yellow">
-              <i class="fa fa-square-o fa-stack-2x"></i>
-              <i class="fa fa-home fa-stack-1x"></i>
-            </span>
-            <h3 class="separate-yellow">A la maison</h3>
-            <p>Trop cool tranquille les leçon qui roks du poney</p>
-          </div>
-        </div>
-      </div>
-      <div class="row">
       </div>
     </section>
