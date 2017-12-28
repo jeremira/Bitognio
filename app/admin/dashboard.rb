@@ -15,7 +15,14 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Registered Users" do
           ul do
             User.all.map do |user|
-              li link_to(user.email, user_show_path(user))
+              li link_to(user.email + '| Balance : ' + user.account.balance.to_s , user)
+            end
+          end
+        end
+        panel "Payments" do
+          ul do
+            Payment.all.map do |payment|
+              li link_to(payment.inspect, '#')
             end
           end
         end
