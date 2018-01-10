@@ -59,9 +59,9 @@ RSpec.describe PaymentsController, type: :controller do
           expect(Payment.last[key]).to eq expected_record[key]
         end
       end
-      it 'redirect to user show page' do
+      it 'redirect to payments page' do
         post :create, params: {amount: 0, stripeToken: stripe_token }
-        expect(response).to redirect_to user_path(user)
+        expect(response).to redirect_to payments_path
       end
     end
     context 'when NOT logged in' do

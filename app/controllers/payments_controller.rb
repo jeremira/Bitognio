@@ -23,7 +23,7 @@ class PaymentsController < ApplicationController
       if @payment.payment_processed
         flash[:notice] = 'Payment successful !'
       else
-        flash[:alert] = 'Payment could not be processed'
+        flash[:alert] = "Payment could not be processed"
       end
     else
       #No flash here ? something went very wrong...

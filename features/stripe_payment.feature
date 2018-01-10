@@ -1,7 +1,6 @@
-Feature: A student can make a payment using his credit card
+Feature: Add money to your account balance using stripe/Credit card
 
-@javascript
-Scenario: A student can make an initial payment
+Scenario: A student can make payments
   Given I am a registered student
   And Tomoko is logged in
   And I am on the home page
@@ -12,7 +11,8 @@ Scenario: A student can make an initial payment
   When I pay 3000 by credit card
   Then I should see 'Payment successful !'
   And  I should see 'Your account balance is : 3000 Yen'
-
-Scenario: A student can add more money to his account balance
-
-Scenario: A student can not pay with an invalid card
+  When I click on link 'Pay 15000 Yen'
+  Then I should see 'Payment confirmation : 15000 Yen'
+  When I pay 15000 by credit card
+  Then I should see 'Payment successful !'
+  And  I should see 'Your account balance is : 18000 Yen'
