@@ -15,14 +15,14 @@ Scenario: A visiter navigate the home page
 
 Scenario: A student navigate the home page
   Given I am a registered student
-  And I am logged in
+  And Tomoko is logged in
   When I am on the home page
   Then I should see 'Plan your lessons now !'
   When I click on link 'Lessons'
-  Then I should see 'Plan a new lesson now !'
+  Then I should see 'Plan your lessons now !'
   When I click on link 'Payments'
   Then I should see 'Make a new payment'
   When I click on link 'My account'
-  Then I should see 'Welcome, studend@cucumber.com !'
+  Then I should see 'Welcome, tomoko@cucumber.com !'
   When I click on link 'Log out'
   Then I should see 'Signed out successfully.'

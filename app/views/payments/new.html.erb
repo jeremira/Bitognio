@@ -6,11 +6,11 @@
           <i class="fa fa-square-o fa-stack-2x"></i>
           <i class="fa fa-home fa-stack-1x"></i>
         </span>
-        Confirmation de paiement <%= @amount %> Yen.
+        Payment confirmation : <%= @amount %> Yen.
       </h4>
-      <h6> <%= @amount %>Yen équivalent à <%= @amount.to_i / 3000 %> heures de leçon seront
-      ajoutés à votre compte. </h6>
-      <%= link_to 'Annuler mon paiement', root_path %> | <%= link_to 'Historique des paiements', '#' %>
+      <p class="text-center"><%= link_to 'Cancel my payment', root_path %> | <%= link_to 'Payments history', '#' %></p>
+      <p class="text-center">Click on button below to pay <%= @amount %> by credit card. Money will be available
+         right away on your account and can be use to book lesson.</h6>
     </div>
   </div>
   <br>
@@ -28,11 +28,11 @@
         <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                 data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
                 data-description="French lesson"
-                data-panel-label="Payer par carte banquaire"
-                data-label="Payer <%= @amount %> par carte bancaire"
+                data-panel-label="Pay by credit card"
+                data-label="Pay <%= @amount %> Yen by credit card."
                 data-amount="<%= @amount %>"
-                data-image="https://stripe.com/img/documentation/checkout/marketplace.png">
-                data-locale="auto"></script>
+                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                data-locale="en"></script>
       <% end %>
     </div>
   </div>

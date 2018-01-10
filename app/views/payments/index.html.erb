@@ -1,0 +1,59 @@
+<section class="content-block container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 offset-md-3">
+      <h4 class="separate-red">
+        <span class="fa-stack color-red">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-home fa-stack-1x"></i>
+        </span>
+        Your account balance is : <%= @balance %> Yen.
+      </h4>
+      <p><%= link_to 'See Payments History', '#' %></p>
+    </div>
+  </div>
+</section>
+
+<section class="content-block container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 offset-md-3">
+      <h4 class="separate-green">
+        <span class="fa-stack color-green">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-home fa-stack-1x"></i>
+        </span>
+        Make a new payment
+      </h4>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-xs-12 col-md-3 offset-md-3">
+      <div class="intro-quarter text-center">
+        <span class="fa-stack fa-2x color-red">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-home fa-stack-1x"></i>
+        </span>
+        <div class="separate-red"></div>
+        <h5>One hour</h3>
+        <%= link_to 'Pay 3000 Yen', new_payment_path(amount: 3000), class: 'btn btn-block btn-custom' %>
+        <p class="separate-red">Pay for one hour lesson, available right now !</p>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-3">
+      <div class="intro-quarter text-center">
+        <span class="fa-stack fa-2x color-blue">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-home fa-stack-1x"></i>
+        </span>
+        <div class="separate-blue"></div>
+        <h5>5 hour</h3>
+        <%= link_to 'Pay 15000 Yen', new_payment_path(amount: 15000), class: 'btn btn-block btn-custom' %>
+        <p class="separate-blue">Pay for 5 hours of lesson time, available right now !</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <%= link_to 'Pay one lesson', new_payment_path(amount: 3000) %>
+  <%= link_to 'Pay ten lesson', new_payment_path(amount: 30000) %>

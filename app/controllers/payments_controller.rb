@@ -2,6 +2,7 @@ class PaymentsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @balance = current_user.account.balance
   end
 
   def new
@@ -16,14 +17,18 @@ class PaymentsController < ApplicationController
     if payment_info[:payment_processed] #Update account balance if Payment was done OK
       current_user.account.update_balance amount
     end
-    
+
     @payment =  Payment.new(payment_info)
     if @payment.save
-      flash[:notice] = 'Balance : ' + current_user.account.balance.to_s
+      if @payment.payment_processed
+        flash[:notice] = 'Payment successful !'
+      else
+        flash[:alert] = 'Payment could not be processed'
+      end
     else
       #No flash here ? something went very wrong...
     end
-    redirect_to current_user
+    redirect_to payments_path
   end
 
 end

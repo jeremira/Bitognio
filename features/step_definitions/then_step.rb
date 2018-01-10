@@ -19,5 +19,6 @@ Then /^I should be logged out$/ do
 end
 
 Then /^I should see '(.+)'$/ do |stuff|
-  expect(page).to have_text(stuff)
+  regex = Regexp.new(stuff, 'i')
+  expect(page).to have_text regex
 end

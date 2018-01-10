@@ -5,17 +5,17 @@ end
 Given /^I am a registered student$/ do
   visit root_path
   click_link 'Signup', match: :first
-  fill_in :user_email, with: 'student@cucumber.com'
+  fill_in :user_email, with: 'tomoko@cucumber.com'
   fill_in :user_password, with: 'password1234'
   fill_in :user_password_confirmation, with: 'password1234'
   click_button 'Signup', match: :first
   click_link 'Log out'
 end
 
-Given /^I am logged in$/ do
+Given /^Tomoko is logged in$/ do
   visit root_path
   click_link 'Log in', match: :first
-  fill_in :user_email, with: 'student@cucumber.com'
+  fill_in :user_email, with: 'tomoko@cucumber.com'
   fill_in :user_password, with: 'password1234'
   click_button 'Log in'
 end
@@ -50,4 +50,23 @@ Given /^I fill in and submit log in form with '(.+)' and '(.+)'$/ do |email, pas
   fill_in :user_email, with: email
   fill_in :user_password, with: password
   click_button 'Log in'
+end
+
+Given /^I activate Selenium$/ do
+  Capybara.current_driver = :selenium
+end
+
+Given /^I pay (.+) by credit card$/ do |amount|
+  sleep 1
+  click_button 'Pay 3000 Yen'
+  stripe_iframe = all('iframe[name=stripe_checkout_app]').last
+  Capybara.within_frame stripe_iframe do
+    page.find_field('Email').set 'foo@bar.com'
+    page.find_field('Card number').set '4242 4242 4242 4242'
+    page.find_field('MM / YY').set '1242'
+    page.find_field('CVC').set '123'
+    sleep 5
+    find('button[type="submit"]').click
+    sleep 5
+  end
 end
