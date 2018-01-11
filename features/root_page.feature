@@ -10,7 +10,7 @@ Scenario: A visiter navigate the home page
   Then I should see 'To contact us'
   When I click on link 'Log in'
   Then I should see 'Log in to Bitognio'
-  When I click on link 'Signup'
+  When I click on link 'Sign up'
   Then I should see 'Signup to Bitognio'
 
 Scenario: A student navigate the home page

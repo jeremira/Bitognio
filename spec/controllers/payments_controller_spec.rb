@@ -15,7 +15,7 @@ RSpec.describe PaymentsController, type: :controller do
     context 'when NOT logged in' do
       it 'redirect to sign-in page' do
         get :index
-        expect(response).to redirect_to new_user_session_path
+        expect(response).to redirect_to '/users/sign_in'
       end
     end
   end
@@ -31,7 +31,7 @@ RSpec.describe PaymentsController, type: :controller do
     context 'when NOT logged in' do
       it 'redirect to sign-in page' do
         get :new
-        expect(response).to redirect_to new_user_session_path
+        expect(response).to redirect_to '/users/sign_in'
       end
     end
   end
@@ -67,7 +67,7 @@ RSpec.describe PaymentsController, type: :controller do
     context 'when NOT logged in' do
       it 'redirect to sign-in page' do
         post :create, params: {stripeToken: 'testToken'}
-        expect(response).to redirect_to new_user_session_path
+        expect(response).to redirect_to '/users/sign_in'
       end
       it 'do NOT create a new payment record' do
         post :create, params: {stripeToken: 'testToken'}

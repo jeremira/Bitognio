@@ -26,7 +26,8 @@ class PaymentsController < ApplicationController
         flash[:alert] = "Payment could not be processed"
       end
     else
-      #No flash here ? something went very wrong...
+      #something went very wrong here, should not happen
+      flash[:alert] = "Payment record could not be saved."
     end
     redirect_to payments_path
   end

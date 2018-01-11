@@ -50,3 +50,13 @@
 .intro-quarter {
   margin: 10px;
 }
+
+.i18n-menu {
+  background-color: $color-grey;
+  padding: 5px 20px;
+  border-radius: 10%;
+}
+
+.i18n-menu > a {
+  margin: 0 5px;
+}

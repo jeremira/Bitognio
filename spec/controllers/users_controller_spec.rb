@@ -15,7 +15,7 @@ RSpec.describe UsersController, type: :controller do
     context 'when NOT logged in' do
       it 'redirect on sign-in page' do
         get :show, params: {id: user}
-        expect(response).to redirect_to new_user_session_path
+        expect(response).to redirect_to '/users/sign_in'
       end
     end
   end
