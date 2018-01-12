@@ -1,4 +1,16 @@
 en:
   app_name: 'Bitognio'
+  app_title: 'French lesson from your couch'
   biz_header: 'French online lessons'
   biz_catch: 'Learn french from your own couch in a relaxing and efficient way. Manage your time and stuff'
+#======================================
+#  Button and link label
+#======================================
+  signup: 'Sign up'
+  login: 'Log in'
+  logout: 'Log out'
+  contact: 'Contact'
+  informations: 'Informations'
+  lessons: 'Lessons'
+  payments: 'Payments'
+  my_account: 'My account'

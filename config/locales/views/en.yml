@@ -1,11 +1,5 @@
 
 en:
-  layouts:
-    title: 'French lesson from your couch'
-    informations: 'Informations'
-    contact: 'Contact'
-    login: 'Log in'
-    signup: 'Sign up'
   home:
     index:
       hello: 'HOYA ENG'

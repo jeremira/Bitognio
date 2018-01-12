@@ -1,10 +1,10 @@
 Given /^I am a registered student$/ do
   visit root_path
-  click_link 'Signup', match: :first
+  click_link 'Sign up', match: :first
   fill_in :user_email, with: 'tomoko@cucumber.com'
   fill_in :user_password, with: 'password1234'
   fill_in :user_password_confirmation, with: 'password1234'
-  click_button 'Signup', match: :first
+  click_button 'Sign up', match: :first
   click_link 'Log out'
 end
 
@@ -25,7 +25,7 @@ Given /^I fill in and submit signup form with '(.+)' and '(.+)'$/ do |email, pas
   fill_in :user_email, with: email
   fill_in :user_password, with: password
   fill_in :user_password_confirmation, with: password
-  click_button 'Signup'
+  click_button 'Sign up'
 end
 
 Given /^I fill in and submit log in form with '(.+)' and '(.+)'$/ do |email, password|
@@ -48,5 +48,5 @@ Then /^I should be logged out$/ do
   expect(page).to have_link 'Informations'
   expect(page).to have_link 'Contact'
   expect(page).to have_link 'Log in'
-  expect(page).to have_link 'Signup'
+  expect(page).to have_link 'Sign up'
 end

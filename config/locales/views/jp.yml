@@ -1,11 +1,5 @@
 
 jp:
-  layouts:
-    title: 'ソファーからフランス語レッスン'
-    informations: '情報'
-    contact: '連絡'
-    login: 'ログイン'
-    signup: 'サインアップ'
   home:
     index:
       hello: 'HOY JAP'

@@ -1,4 +1,16 @@
 jp:
   app_name: 'Bitognio'
-  biz_header: ' JAP VERSFrench online lessons'
-  biz_catch: 'JAP VERSLearn french from your own couch in a relaxing and efficient way. Manage your time and stuff'
+  app_title: 'ソファーからフランス語レッスン'
+  biz_header: 'フランス語レッスン'
+  biz_catch: 'ソファーからフランス語レッスン'
+#======================================
+#  Button and link label
+#======================================
+  signup: 'サインアップ'
+  login: 'ログイン'
+  logout: 'ログアウト'
+  contact: '連絡'
+  informations: '情報'
+  lessons: 'レッスン'
+  payments: '支払い'
+  my_account: 'アカウント'

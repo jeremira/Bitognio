@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= t 'layouts.title' %></title>
+    <title><%= t :app_title %></title>
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -25,29 +25,29 @@
         <ul class="navbar-nav">
           <% if current_user %>
             <li class="nav-item">
-              <%= link_to t('layouts.informations'), root_path, class: 'nav-link separate-green' %>
+              <%= link_to t(:lessons), root_path, class: 'nav-link separate-green' %>
             </li>
             <li class="nav-item">
-              <%= link_to t('layouts.payments'), payments_path, class: 'nav-link separate-yellow' %>
+              <%= link_to t(:payments), payments_path, class: 'nav-link separate-yellow' %>
             </li>
             <li class="nav-item">
-              <%= link_to t('layouts.my_account'), current_user, class: 'nav-link separate-red' %>
+              <%= link_to t(:my_account), current_user, class: 'nav-link separate-red' %>
             </li>
             <li class="nav-item">
-              <%= link_to t('layouts.logout'), destroy_user_session_path, method: :delete, class: 'nav-link separate-blue' %>
+              <%= link_to t(:logout), destroy_user_session_path, method: :delete, class: 'nav-link separate-blue' %>
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to t('layouts.informations'), root_path, class: 'nav-link separate-green' %>
+              <%= link_to t(:informations), root_path, class: 'nav-link separate-green' %>
             </li>
             <li class="nav-item">
-              <%= link_to t('layouts.contact'), root_path(anchor: 'contact'), class: 'nav-link separate-yellow' %>
+              <%= link_to t(:contact), root_path(anchor: 'contact'), class: 'nav-link separate-yellow' %>
             </li>
             <li class="nav-item">
-              <%= link_to t('layouts.login'), new_user_session_path, class: 'nav-link separate-red' %>
+              <%= link_to t(:login), new_user_session_path, class: 'nav-link separate-red' %>
             </li>
             <li class="nav-item">
-              <%= link_to t('layouts.signup'), new_user_registration_path, class: 'nav-link separate-blue' %>
+              <%= link_to t(:signup), new_user_registration_path, class: 'nav-link separate-blue' %>
             </li>
           <% end %>
           <li class="nav-item">
