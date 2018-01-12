@@ -1,22 +1,23 @@
-en:
+ja:
   app_name: 'Bitognio'
-  app_title: 'French lessons from your couch'
-  biz_header: 'French online lessons'
-  biz_catch: 'Learn french from your own couch in a relaxing and efficient way. Manage your time and stuff'
+  app_title: 'ソファーからフランス語レッスン'
+  biz_header: 'フランス語レッスン'
+  biz_catch: 'ソファーからフランス語レッスン'
 #======================================
 #  Button and link label
 #======================================
-  __signup: 'Sign up'
-  __login: 'Log in'
-  __logout: 'Log out'
-  __contact: 'Contact'
-  __informations: 'Informations'
-  __lessons: 'Lessons'
-  __my_account: 'My account'
-  __payments: 'Payments'
+  __signup: 'サインアップ'
+  __login: 'ログイン'
+  __logout: 'ログアウト'
+  __contact: '連絡'
+  __informations: '情報'
+  __lessons: 'レッスン'
+  __my_account: 'アカウント'
+  __payments: '支払い'
   __new_payment: 'Make a new payment'
   __payments_history: 'See my payments history'
   __payment_cancel: 'Cancel my payment'
+
 
 #======================================
 #  Form stuff

@@ -25,34 +25,34 @@
         <ul class="navbar-nav">
           <% if current_user %>
             <li class="nav-item">
-              <%= link_to t(:lessons), root_path, class: 'nav-link separate-green' %>
+              <%= link_to t(:__lessons), root_path, class: 'nav-link separate-green' %>
             </li>
             <li class="nav-item">
-              <%= link_to t(:payments), payments_path, class: 'nav-link separate-yellow' %>
+              <%= link_to t(:__payments), payments_path, class: 'nav-link separate-yellow' %>
             </li>
             <li class="nav-item">
-              <%= link_to t(:my_account), current_user, class: 'nav-link separate-red' %>
+              <%= link_to t(:__my_account), current_user, class: 'nav-link separate-red' %>
             </li>
             <li class="nav-item">
-              <%= link_to t(:logout), destroy_user_session_path, method: :delete, class: 'nav-link separate-blue' %>
+              <%= link_to t(:__logout), destroy_user_session_path, method: :delete, class: 'nav-link separate-blue' %>
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to t(:informations), root_path, class: 'nav-link separate-green' %>
+              <%= link_to t(:__informations), root_path, class: 'nav-link separate-green' %>
             </li>
             <li class="nav-item">
-              <%= link_to t(:contact), root_path(anchor: 'contact'), class: 'nav-link separate-yellow' %>
+              <%= link_to t(:__contact), root_path(anchor: 'contact'), class: 'nav-link separate-yellow' %>
             </li>
             <li class="nav-item">
-              <%= link_to t(:login), new_user_session_path, class: 'nav-link separate-red' %>
+              <%= link_to t(:__login), new_user_session_path, class: 'nav-link separate-red' %>
             </li>
             <li class="nav-item">
-              <%= link_to t(:signup), new_user_registration_path, class: 'nav-link separate-blue' %>
+              <%= link_to t(:__signup), new_user_registration_path, class: 'nav-link separate-blue' %>
             </li>
           <% end %>
           <li class="nav-item">
             <div class="i18n-menu">
-              <%= link_to '', root_path(locale: 'jp'), id: 'japanese-flag', class: 'nav-link flag-icon flag-icon-jp' %>
+              <%= link_to '', root_path(locale: 'ja'), id: 'japanese-flag', class: 'nav-link flag-icon flag-icon-jp' %>
               <%= link_to '', root_path(locale: 'en'), id: 'english-flag', class: 'nav-link flag-icon flag-icon-gb' %>
             </div>
           </li>

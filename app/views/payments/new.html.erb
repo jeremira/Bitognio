@@ -6,11 +6,10 @@
           <i class="fa fa-square-o fa-stack-2x"></i>
           <i class="fa fa-home fa-stack-1x"></i>
         </span>
-        Payment confirmation : <%= @amount %> Yen.
+        <%= t('.payment_confirmation', amount: @amount) %>
       </h4>
-      <p class="text-center"><%= link_to 'Cancel my payment', root_path %> | <%= link_to 'Payments history', '#' %></p>
-      <p class="text-center">Click on button below to pay <%= @amount %> by credit card. Money will be available
-         right away on your account and can be use to book lesson.</h6>
+      <p class="text-center"><%= link_to t(:__payment_cancel), root_path %> | <%= link_to t(:__payments_history), '#' %></p>
+      <p class="text-left"><%= t('.payment_confirmation_explanation') %></p>
     </div>
   </div>
   <br>
@@ -27,12 +26,11 @@
         <%= hidden_field_tag :amount, @amount %>
         <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                 data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                data-description="French lesson"
-                data-panel-label="Pay by credit card"
-                data-label="Pay <%= @amount %> Yen by credit card."
+                data-description="<%= t(:app_name) %>"
+                data-label="<%= t('.stripe_button_label', amount: @amount) %>"
                 data-amount="<%= @amount %>"
                 data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                data-locale="en"></script>
+                data-locale="auto"></script>
       <% end %>
     </div>
   </div>

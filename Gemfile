@@ -21,6 +21,8 @@ gem 'webpacker'
 # gem 'therubyracer', platforms: :ruby
 gem 'devise'
 gem 'activeadmin'
+#i18n
+gem 'rails-i18n'
 #Payment system
 gem 'figaro'
 gem 'stripe'

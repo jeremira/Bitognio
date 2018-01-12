@@ -1,9 +1,9 @@
-en:
+ja:
   home:
     index:
   payments:
     index:
-      account_balance: 'Your account balance is : %{balance} Yen.'
+      account_balance: 'Your account balance is :%{balance} Yen.'
       make_a_new_payment: 'Make a new payment'
       1_hour: '1 hour'
       5_hour: '5 hours'

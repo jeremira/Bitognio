@@ -6,9 +6,9 @@
           <i class="fa fa-square-o fa-stack-2x"></i>
           <i class="fa fa-home fa-stack-1x"></i>
         </span>
-        Welcome, <%= current_user.email %> !
+        <%= t('.welcome', email: current_user.email) %>
       </h4>
-      <%= link_to 'Effectuer un nouveau paiement', '#' %> | <%= link_to 'Historique des paiements', '#' %>
+      <%= link_to t(:__new_payment), '#' %> | <%= link_to t(:payments_history), '#' %>
     </div>
   </div>
 </section>
