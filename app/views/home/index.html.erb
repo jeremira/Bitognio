@@ -44,7 +44,15 @@
       <div class="row" id="contact">
         <div class="col-xs-12 col-md-6 offset-md-3">
           <h1 class="separate-yellow">To contact us :</h1>
-          <h5>Form to implement here</h5>
+          <%= form_tag(home_contact_path, method: 'post') do %>
+            <%= label_tag(:email, "Your email") %>
+            <%= email_field(:user, :email) %>
+            <%= label_tag(:subject, "Subject") %>
+            <%= text_field_tag(:subject) %>
+            <%= label_tag(:content, "Your message") %>
+            <%= text_field_tag(:content) %>
+            <%= submit_tag("Send message") %>
+          <% end %>
         </div>
       </div>
     </section>
