@@ -1,6 +1,11 @@
 en:
   home:
     index:
+      contact-form-title: 'To contact us :'
+      contact_form_email: "Don't forget to tell us your email :"
+      contact_form_message: "Ask us anything, we'll be happy to help :)"
+      leave_a_message: "What can we help ?"
+      send_message: "Send my message !"
   payments:
     index:
       account_balance: 'Your account balance is : %{balance} Yen.'

@@ -43,15 +43,20 @@
     <section class="container-fluid bot-space">
       <div class="row" id="contact">
         <div class="col-xs-12 col-md-6 offset-md-3">
-          <h1 class="separate-yellow">To contact us :</h1>
+          <h1 class="separate-yellow"><%= t('.contact-form-title') %></h1>
+          <br>
           <%= form_tag(home_contact_path, method: 'post') do %>
-            <%= label_tag(:email, "Your email") %>
-            <%= email_field(:user, :email) %>
-            <%= label_tag(:subject, "Subject") %>
-            <%= text_field_tag(:subject) %>
-            <%= label_tag(:content, "Your message") %>
-            <%= text_field_tag(:content) %>
-            <%= submit_tag("Send message") %>
+            <div class="form-group">
+              <h6><%= label_tag(:content, t('.contact_form_message')) %></h6>
+              <%= text_area_tag :content,nil,  rows: '5', placeholder: t('.leave_a_message'),
+                                                class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <h6><%= label_tag(:email, t('.contact_form_email')) %></h6>
+              <%= email_field :user, :email, placeholder: t(:__placeholder_email),
+                                              class: 'form-control', required: true %>
+            </div>
+            <%= submit_tag t('.send_message'), class: 'btn btn-custom btn-block' %>
           <% end %>
         </div>
       </div>
