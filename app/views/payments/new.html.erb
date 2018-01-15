@@ -13,6 +13,7 @@
     </div>
   </div>
   <br>
+  <!-- STRIPE PAYMENT -->
   <div class="row">
     <div class="col-xs-12 col-md-6 offset-md-3 text-center">
       <%= form_tag payments_path do %>
@@ -32,6 +33,50 @@
                 data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                 data-locale="auto"></script>
       <% end %>
+    </div>
+  </div>
+  <!-- PAYPAL PAYMENT -->
+  <div class="row">
+    <div class="col-xs-12 col-md-6 offset-md-3 text-center">
+      <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+      <div id="paypal-button"></div>
+ <script>
+   paypal.Button.render({
+     env: 'sandbox', // Or 'production',
+
+     commit: true, // Show a 'Pay Now' button
+
+     style: {
+       color: 'gold',
+       size: 'small'
+     },
+
+     payment: function(data, actions) {
+       /*
+        * Set up the payment here
+        */
+     },
+
+     onAuthorize: function(data, actions) {
+       /*
+        * Execute the payment here
+        */
+     },
+
+     onCancel: function(data, actions) {
+       /*
+        * Buyer cancelled the payment
+        */
+     },
+
+     onError: function(err) {
+       /*
+        * An error occurred during the transaction
+        */
+     }
+   }, '#paypal-button');
+ </script>
+
     </div>
   </div>
 </section>
