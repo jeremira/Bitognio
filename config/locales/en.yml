@@ -26,3 +26,7 @@ en:
   __placeholder_password_confirm: 'Confirm your password'
   __remember_me: 'Remember me'
   __forgot_password: 'Forgot your password ?'
+  #======================================
+  #  Email stuff
+  #======================================
+  __email_sent: "Your message was sent !"
