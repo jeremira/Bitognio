@@ -6,8 +6,12 @@ RSpec.describe Payment, type: :model do
   it "has a valid factory" do
     expect(payment).to be_valid
   end
-  it "require an payment method" do
-    payment.via = nil
+  it "require a payment origin" do
+    payment.from = nil
+    expect(payment).to_not be_valid
+  end
+  it "require a payment destination" do
+    payment.to = nil
     expect(payment).to_not be_valid
   end
   it "require an amount" do

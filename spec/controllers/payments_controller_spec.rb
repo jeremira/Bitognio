@@ -43,9 +43,10 @@ RSpec.describe PaymentsController, type: :controller do
       let(:stripe_helper) { StripeMock.create_test_helper }
       let(:stripe_token) { stripe_helper.generate_card_token }
       after { StripeMock.stop }
+
       it 'create a new Payment record for a valid payment' do
         expect{post :create, params: {amount: 4567, stripeToken: stripe_token }}.to change(Payment, :count).by 1
-        expected_record = { via: 'stripe', amount: 4567, user_id: user.id,
+        expected_record = { from: 'stripe', to: user.id, amount: 4567, user_id: user.id,
                             payment_processed: true, error_message: nil }
         expected_record.keys.each do |key|
           expect(Payment.last[key]).to eq expected_record[key]
@@ -53,7 +54,7 @@ RSpec.describe PaymentsController, type: :controller do
       end
       it 'create a new Payment record for a invalid payment' do
         expect{post :create, params: {amount: 0, stripeToken: stripe_token }}.to change(Payment, :count).by 1
-        expected_record = { via: 'stripe', amount: 0, user_id: user.id,
+        expected_record = { from: 'stripe', to: user.id, amount: 0, user_id: user.id,
                             payment_processed: false, error_message: 'Amount too low' }
         expected_record.keys.each do |key|
           expect(Payment.last[key]).to eq expected_record[key]

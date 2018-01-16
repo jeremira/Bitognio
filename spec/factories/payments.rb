@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :payment do
-    via "Stripe"
+    from "Stripe"
+    to 785
     amount 1000
     user
   end
