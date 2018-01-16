@@ -1,14 +1,22 @@
 #Add payment method to User like model
 module CanPay
 
-  def add_money_to_account_balance amount
-    self.account.balance += amount
-    self.account.save
-  end
+  def transfer_money_to_teacher teacher, amount
+    student_balance = self.account.balance
+    payment_processed = false
+    error_message = nil
 
-  def remove_money_from_account_balance amount
-    self.account.balance -= amount
-    self.account.save
+    if student_balance >= amount
+      remove_money_from_account_balance self, amount
+      add_money_to_account_balance teacher, amount
+      payment_processed = true
+    else
+      error_message = "Not enough money : #{student_balance}"
+    end
+
+    return {user_id: self.id, from: 'self', to: teacher.id, amount: amount,
+           payment_processed: payment_processed, error_message: error_message}
+
   end
 
   def make_a_payment_with_stripe(amount, processing_information={})
@@ -31,6 +39,7 @@ module CanPay
         error_message =  "Internal Error : No token provided"
       else
         payment_processed = true
+        add_money_to_account_balance self, amount
       end
     else
       error_message = "Amount too low"
@@ -39,4 +48,15 @@ module CanPay
     return {user_id: self.id, from: 'stripe', to: self.id, amount: amount,
            payment_processed: payment_processed, error_message: error_message}
   end
+
+  private
+    def add_money_to_account_balance user, amount
+      user.account.balance += amount
+      user.account.save
+    end
+
+    def remove_money_from_account_balance user, amount
+      user.account.balance -= amount
+      user.account.save
+    end
 end

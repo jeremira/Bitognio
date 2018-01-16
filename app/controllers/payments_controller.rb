@@ -13,10 +13,8 @@ class PaymentsController < ApplicationController
     amount = params[:amount].to_i
     token  = params[:stripeToken]
 
+    #process payment and update user balance
     payment_info = current_user.make_a_payment_with_stripe(amount, {token: token} )
-    if payment_info[:payment_processed] #Update account balance if Payment was done OK
-      current_user.add_money_to_account_balance amount
-    end
 
     @payment =  Payment.new(payment_info)
     if @payment.save
