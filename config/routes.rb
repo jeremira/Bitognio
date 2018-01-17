@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   #Ressources
   resources :users, only: :show
+  resources :lessons
   resources :payments
 
 
