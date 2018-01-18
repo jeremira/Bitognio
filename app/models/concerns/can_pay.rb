@@ -2,7 +2,7 @@
 module CanPay
 
   def transfer_money_to_teacher teacher, amount
-    student_balance = self.account.balance
+    student_balance = account_balance self
     payment_processed = false
     error_message = nil
 
@@ -36,13 +36,13 @@ module CanPay
       rescue Stripe::CardError => e
         error_message =  e.message
       rescue
-        error_message =  "Internal Error : No token provided"
+        error_message =  "Could not pay : Token absent or corrupted"
       else
         payment_processed = true
         add_money_to_account_balance self, amount
       end
     else
-      error_message = "Amount too low"
+      error_message = "Could not pay : Amount too low"
     end
 
     return {user_id: self.id, from: 'stripe', to: self.id, amount: amount,
@@ -50,6 +50,10 @@ module CanPay
   end
 
   private
+    def account_balance user
+      user.account.balance
+    end
+
     def add_money_to_account_balance user, amount
       user.account.balance += amount
       user.account.save

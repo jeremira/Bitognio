@@ -8,12 +8,31 @@ Given /^I am a registered student$/ do
   click_link 'Log out'
 end
 
+Given /^Tomoko register and log in$/ do
+  visit root_path
+  click_link 'Sign up', match: :first
+  fill_in :user_email, with: 'tomoko@cucumber.com'
+  fill_in :user_password, with: 'password1234'
+  fill_in :user_password_confirmation, with: 'password1234'
+  click_button 'Sign up', match: :first
+end
+
 Given /^Tomoko is logged in$/ do
   visit root_path
   click_link 'Log in', match: :first
   fill_in :user_email, with: 'tomoko@cucumber.com'
   fill_in :user_password, with: 'password1234'
   click_button 'Log in'
+end
+
+Given /^Teacher Robert exist$/ do
+  visit root_path
+  click_link 'Sign up', match: :first
+  fill_in :user_email, with: 'robert@cucumber.com'
+  fill_in :user_password, with: 'password1234'
+  fill_in :user_password_confirmation, with: 'password1234'
+  click_button 'Sign up', match: :first
+  click_link 'Log out'
 end
 
 Given /^I am logged out$/ do

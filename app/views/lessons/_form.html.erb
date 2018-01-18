@@ -10,6 +10,9 @@
       </ul>
     </div>
   <% end %>
+  <div class="form-group">
+    <%= select_date Date.today, prefix: :start_date %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

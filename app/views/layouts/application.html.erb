@@ -25,7 +25,7 @@
         <ul class="navbar-nav">
           <% if current_user %>
             <li class="nav-item">
-              <%= link_to t(:__lessons), root_path, class: 'nav-link separate-green' %>
+              <%= link_to t(:__lessons), lessons_path, class: 'nav-link separate-green' %>
             </li>
             <li class="nav-item">
               <%= link_to t(:__payments), payments_path, class: 'nav-link separate-yellow' %>

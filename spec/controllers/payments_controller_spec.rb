@@ -55,7 +55,7 @@ RSpec.describe PaymentsController, type: :controller do
       it 'create a new Payment record for a invalid payment' do
         expect{post :create, params: {amount: 0, stripeToken: stripe_token }}.to change(Payment, :count).by 1
         expected_record = { from: 'stripe', to: user.id, amount: 0, user_id: user.id,
-                            payment_processed: false, error_message: 'Amount too low' }
+                            payment_processed: false, error_message: 'Could not pay : Amount too low' }
         expected_record.keys.each do |key|
           expect(Payment.last[key]).to eq expected_record[key]
         end

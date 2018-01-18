@@ -95,7 +95,7 @@ describe CanPay  do
         expect(Stripe::Charge).to_not receive(:create)
         payment_information = user.make_a_payment_with_stripe(valid_token)
         expected_stuff      = {user_id: user.id, from: 'stripe', to: user.id, amount: 0,
-                               payment_processed: false, error_message: 'Amount too low'}
+                               payment_processed: false, error_message: 'Could not pay : Amount too low'}
         expect(payment_information).to eq expected_stuff
         expect(user.account.balance).to eq 0
       end
@@ -103,7 +103,7 @@ describe CanPay  do
         expect(Stripe::Charge).to_not receive(:create)
         payment_information = user.make_a_payment_with_stripe(2999, {token: stripe_helper.generate_card_token})
         expected_stuff      = {user_id: user.id, from: 'stripe', to: user.id, amount: 2999,
-                               payment_processed: false, error_message: 'Amount too low'}
+                               payment_processed: false, error_message: 'Could not pay : Amount too low'}
         expect(payment_information).to eq expected_stuff
         expect(user.account.balance).to eq 0
       end
@@ -111,7 +111,7 @@ describe CanPay  do
         expect(Stripe::Charge).to_not receive(:create)
         payment_information = user.make_a_payment_with_stripe(0, {token: stripe_helper.generate_card_token})
         expected_stuff      = {user_id: user.id, from: 'stripe', to: user.id, amount: 0,
-                               payment_processed: false, error_message: 'Amount too low'}
+                               payment_processed: false, error_message: 'Could not pay : Amount too low'}
         expect(payment_information).to eq expected_stuff
         expect(user.account.balance).to eq 0
       end
@@ -126,7 +126,7 @@ describe CanPay  do
       it 'return error information' do
         payment_information = user.make_a_payment_with_stripe(3000)
         expected_stuff      = {user_id: user.id, from: 'stripe', to: user.id, amount: 3000,
-                               payment_processed: false, error_message: 'Internal Error : No token provided'}
+                               payment_processed: false, error_message: 'Could not pay : Token absent or corrupted'}
         expect(payment_information).to eq expected_stuff
       end
       it 'dont change user balance' do
