@@ -15,6 +15,7 @@ class LessonsController < ApplicationController
   # GET /lessons/new
   def new
     @lesson = Lesson.new
+    @available_teachers = User.where(is_a_teacher: true)
   end
 
   # GET /lessons/1/edit
@@ -25,7 +26,6 @@ class LessonsController < ApplicationController
   # POST /lessons.json
   def create
     @lesson = Lesson.new(lesson_params)
-
     respond_to do |format|
       if @lesson.save
         format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
@@ -69,6 +69,6 @@ class LessonsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lesson_params
-      params.fetch(:lesson, {})
+      params.require(:lesson).permit(:student_id, :teacher_id, :date, :time)
     end
 end
