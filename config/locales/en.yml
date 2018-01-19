@@ -3,6 +3,11 @@ en:
   app_title: 'French lessons from your couch'
   biz_header: 'French online lessons'
   biz_catch: 'Learn french from your own couch in a relaxing and efficient way. Manage your time and stuff'
+
+  __show: 'Show'
+  __edit: 'Edit'
+  __cancel: 'Cancel'
+  
 #======================================
 #  Button and link label
 #======================================
@@ -12,6 +17,8 @@ en:
   __contact: 'Contact'
   __informations: 'Informations'
   __lessons: 'Lessons'
+  __new_request: 'New lesson request'
+  __request_lesson: 'Request lesson'
   __my_account: 'My account'
   __payments: 'Payments'
   __new_payment: 'Make a new payment'
@@ -26,7 +33,8 @@ en:
   __placeholder_password_confirm: 'Confirm your password'
   __remember_me: 'Remember me'
   __forgot_password: 'Forgot your password ?'
-  #======================================
-  #  Email stuff
-  #======================================
+
+#======================================
+#  Email stuff
+#======================================
   __email_sent: "Your message was sent !"

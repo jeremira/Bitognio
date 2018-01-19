@@ -32,6 +32,10 @@ Given /^Teacher Robert exist$/ do
   fill_in :user_password, with: 'password1234'
   fill_in :user_password_confirmation, with: 'password1234'
   click_button 'Sign up', match: :first
+  robert = User.where(email: 'robert@cucumber.com' ).first
+  robert.is_a_teacher = true
+  robert.save
+  expect(User.where(is_a_teacher: true).count).to eq 1
   click_link 'Log out'
 end
 

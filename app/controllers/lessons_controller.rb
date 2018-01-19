@@ -1,5 +1,6 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy]
+  before_action :set_available_teacher, only: [:new, :create, :edit]
 
   # GET /lessons
   # GET /lessons.json
@@ -14,8 +15,8 @@ class LessonsController < ApplicationController
 
   # GET /lessons/new
   def new
-    @lesson = Lesson.new
     @available_teachers = User.where(is_a_teacher: true)
+    @lesson = Lesson.new
   end
 
   # GET /lessons/1/edit
@@ -25,13 +26,13 @@ class LessonsController < ApplicationController
   # POST /lessons
   # POST /lessons.json
   def create
-    @lesson = Lesson.new(lesson_params)
+    @lesson = current_user.student_lessons.build(lesson_params)
     respond_to do |format|
       if @lesson.save
-        format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
+        format.html { redirect_to lessons_path, notice: t('.lesson_created') }
         format.json { render :show, status: :created, location: @lesson }
       else
-        format.html { render :new }
+        format.html { flash.now[:alert] = t('.lesson_not_created') ; render :new }
         format.json { render json: @lesson.errors, status: :unprocessable_entity }
       end
     end
@@ -56,7 +57,7 @@ class LessonsController < ApplicationController
   def destroy
     @lesson.destroy
     respond_to do |format|
-      format.html { redirect_to lessons_url, notice: 'Lesson was successfully destroyed.' }
+      format.html { redirect_to lessons_url, notice: t('.lesson_canceled') }
       format.json { head :no_content }
     end
   end
@@ -65,6 +66,10 @@ class LessonsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_lesson
       @lesson = Lesson.find(params[:id])
+    end
+
+    def set_available_teacher
+      @available_teachers = User.where(is_a_teacher: true)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
