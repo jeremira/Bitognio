@@ -16,7 +16,7 @@ class PaymentsController < ApplicationController
     #process payment and update user balance
     payment_info = current_user.make_a_payment_with_stripe(amount, {token: token} )
 
-    @payment =  Payment.new(payment_info)
+    @payment =  current_user.payments.build(payment_info)
     if @payment.save
       if @payment.payment_processed
         flash[:notice] = 'Payment successful !'

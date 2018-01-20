@@ -16,3 +16,17 @@ Scenario: Tomoko cancel a request
   Given I request a new lesson
   And I click on link 'Cancel'
   Then I should see 'Lesson canceled !'
+
+Scenario: Tomoko pay her lesson
+  Given I request a new lesson
+  And I have some funds
+  And Robert confirm the lesson
+  When I click on link 'Pay my lesson'
+  Then I should see 'This lesson has been pay to robert@cucumber.com. Thank you !'
+
+Scenario: Tomoko wanna pay her lesson but she got no money because it's rough time man recession and stuff
+  Given I request a new lesson
+  And Robert confirm the lesson
+  When I click on link 'Pay my lesson'
+  Then I should see 'Not enough money : 0'
+  And I should see 'My account balance is : 0 Yen'

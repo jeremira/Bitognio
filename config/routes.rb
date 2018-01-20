@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   #Ressources
   resources :users, only: :show
   resources :lessons
+  post 'lessons/:id/pay', to: 'lessons#pay', as: 'pay_lesson'
   resources :payments
+
 
 
   # Static pages

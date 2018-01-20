@@ -1,26 +1,17 @@
 class LessonsController < ApplicationController
-  before_action :set_lesson, only: [:show, :edit, :update, :destroy]
-  before_action :set_available_teacher, only: [:new, :create, :edit]
+  before_action :authenticate_user!
+  before_action :set_lesson, only: [:update, :destroy, :pay]
+  before_action :set_available_teachers, only: [:new, :create, :edit]
 
   # GET /lessons
   # GET /lessons.json
   def index
-    @lessons = Lesson.all
-  end
-
-  # GET /lessons/1
-  # GET /lessons/1.json
-  def show
+    @lessons = current_user.student_lessons
   end
 
   # GET /lessons/new
   def new
-    @available_teachers = User.where(is_a_teacher: true)
     @lesson = Lesson.new
-  end
-
-  # GET /lessons/1/edit
-  def edit
   end
 
   # POST /lessons
@@ -35,6 +26,28 @@ class LessonsController < ApplicationController
         format.html { flash.now[:alert] = t('.lesson_not_created') ; render :new }
         format.json { render json: @lesson.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  # POST /lessons/:id/pay
+  def pay
+    teacher = @lesson.teacher
+    payment_info = current_user.transfer_money_to_teacher teacher, 3000
+
+    @payment =  current_user.payments.build(payment_info)
+
+    if @payment.save
+      if @payment.payment_processed
+        flash[:notice] = "This lesson has been pay to #{teacher.email}. Thank you !"
+        redirect_to lessons_path
+      else
+        flash[:alert] = @payment.error_message
+        redirect_to payments_path
+      end
+    else
+      #something went very wrong here, should not happen
+      flash[:alert] = "Payment record could not be saved."
+      redirect_to root_path
     end
   end
 
@@ -68,7 +81,7 @@ class LessonsController < ApplicationController
       @lesson = Lesson.find(params[:id])
     end
 
-    def set_available_teacher
+    def set_available_teachers
       @available_teachers = User.where(is_a_teacher: true)
     end
 
