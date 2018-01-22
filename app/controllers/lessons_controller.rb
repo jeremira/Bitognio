@@ -23,7 +23,7 @@ class LessonsController < ApplicationController
         format.html { redirect_to lessons_path, notice: t('.lesson_created') }
         format.json { render :show, status: :created, location: @lesson }
       else
-        format.html { flash.now[:alert] = t('.lesson_not_created') ; render :new }
+        format.html { flash.now[:alert] = t('.lesson_not_created') ;render :new }
         format.json { render json: @lesson.errors, status: :unprocessable_entity }
       end
     end
@@ -38,7 +38,7 @@ class LessonsController < ApplicationController
 
     if @payment.save
       if @payment.payment_processed
-        flash[:notice] = "This lesson has been pay to #{teacher.email}. Thank you !"
+        flash[:notice] = t('.lesson_payed', teacher: teacher.email)
         redirect_to lessons_path
       else
         flash[:alert] = @payment.error_message
@@ -46,7 +46,7 @@ class LessonsController < ApplicationController
       end
     else
       #something went very wrong here, should not happen
-      flash[:alert] = "Payment record could not be saved."
+      flash[:alert] = "CanPay Error : Payment record could not be saved."
       redirect_to root_path
     end
   end
@@ -56,7 +56,7 @@ class LessonsController < ApplicationController
   def update
     respond_to do |format|
       if @lesson.update(lesson_params)
-        format.html { redirect_to @lesson, notice: 'Lesson was successfully updated.' }
+        format.html { redirect_to @lesson, notice: t('.lesson_updated') }
         format.json { render :show, status: :ok, location: @lesson }
       else
         format.html { render :edit }

@@ -20,7 +20,7 @@ RSpec.describe LessonsController, type: :routing do
     end
 
     it "routes to #pay" do
-      expect(:post => "/lessons/1/pay").to route_to('lessons#pay', :id => "1")
+      expect(:post => "lessons/1/pay").to route_to('lessons#pay', :id => "1")
     end
 
     it "routes to #create" do
