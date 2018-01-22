@@ -1,4 +1,13 @@
 require 'rails_helper'
+require 'rspec/expectations'
+
+RSpec::Matchers.define :match_attributes_of do |expected|
+  match do |actual|
+    expected.keys.each do |key|
+      return false if expected[key] != actual[key]
+    end
+  end
+end
 
 describe CanPay  do
   let(:user)    {create :user}
@@ -19,11 +28,14 @@ describe CanPay  do
         user.transfer_money_to_teacher teacher, 6000
         expect(teacher.account.balance).to eq 6000
       end
+      it 'create a new payment record' do
+        expect{user.transfer_money_to_teacher teacher, 6000}.to change(Payment, :count).by 1
+      end
       it 'return payment information' do
-        payment_infos  = user.transfer_money_to_teacher teacher, 6000
-        expected_infos = {user_id: user.id, from: 'self', to: teacher.id, amount: 6000,
+        payment  = user.transfer_money_to_teacher teacher, 6000
+        expected_payment = {user_id: user.id, from: 'self', to: teacher.id, amount: 6000,
                                payment_processed: true, error_message: nil}
-        expect(payment_infos).to eq expected_infos
+        expect(payment).to match_attributes_of expected_payment
       end
     end
 
@@ -40,11 +52,14 @@ describe CanPay  do
         user.transfer_money_to_teacher teacher, 6000
         expect(teacher.account.balance).to eq 6000
       end
+      it 'create a new payment record' do
+        expect{user.transfer_money_to_teacher teacher, 6000}.to change(Payment, :count).by 1
+      end
       it 'return payment information' do
-        payment_infos  = user.transfer_money_to_teacher teacher, 6000
+        payment = user.transfer_money_to_teacher teacher, 6000
         expected_infos = {user_id: user.id, from: 'self', to: teacher.id, amount: 6000,
-                               payment_processed: true, error_message: nil}
-        expect(payment_infos).to eq expected_infos
+                          payment_processed: true, error_message: nil}
+        expect(payment).to match_attributes_of expected_infos
       end
     end
 
@@ -57,14 +72,16 @@ describe CanPay  do
         user.transfer_money_to_teacher teacher, 6000
         expect(teacher.account.balance).to eq 0
       end
+      it 'create a new payment record' do
+        expect{user.transfer_money_to_teacher teacher, 6000}.to change(Payment, :count).by 1
+      end
       it 'return payment information' do
-        payment_infos  = user.transfer_money_to_teacher teacher, 6000
+        payment = user.transfer_money_to_teacher teacher, 6000
         expected_infos = {user_id: user.id, from: 'self', to: teacher.id, amount: 6000,
-                               payment_processed: false, error_message: 'Not enough money : 0'}
-        expect(payment_infos).to eq expected_infos
+                          payment_processed: false, error_message: 'Not enough money : 0'}
+        expect(payment).to match_attributes_of expected_infos
       end
     end
-
   end
 
   describe 'make_a_payment_with_stripe' do
@@ -78,11 +95,14 @@ describe CanPay  do
         expect(Stripe::Charge).to receive(:create)
         user.make_a_payment_with_stripe(3000, valid_token)
       end
-      it 'return a Payment-builder object' do
-        payment_information = user.make_a_payment_with_stripe(3000, valid_token)
-        expected_stuff      = {user_id: user.id, from: 'stripe', to: user.id, amount: 3000,
-                               payment_processed: true, error_message: nil}
-        expect(payment_information).to eq expected_stuff
+      it 'create a new payment record' do
+        expect{user.make_a_payment_with_stripe(3000, valid_token)}.to change(Payment, :count).by 1
+      end
+      it 'return a Payment record' do
+        payment = user.make_a_payment_with_stripe(3000, valid_token)
+        expected_stuff = {user_id: user.id, from: 'stripe', to: user.id, amount: 3000,
+                          payment_processed: true, error_message: nil}
+        expect(payment).to match_attributes_of expected_stuff
       end
       it 'update the user account balance' do
         user.make_a_payment_with_stripe(5612, valid_token)
@@ -91,43 +111,50 @@ describe CanPay  do
     end
 
     context 'Invalid amount' do
+      it 'create a new payment record' do
+        expect{user.make_a_payment_with_stripe(nil, valid_token)}.to change(Payment, :count).by 1
+        expect{user.make_a_payment_with_stripe(1500, valid_token)}.to change(Payment, :count).by 1
+        expect{user.make_a_payment_with_stripe(0, valid_token)}.to change(Payment, :count).by 1
+      end
       it 'do NOT process payment with no amount' do
         expect(Stripe::Charge).to_not receive(:create)
-        payment_information = user.make_a_payment_with_stripe(valid_token)
-        expected_stuff      = {user_id: user.id, from: 'stripe', to: user.id, amount: 0,
-                               payment_processed: false, error_message: 'Could not pay : Amount too low'}
-        expect(payment_information).to eq expected_stuff
+        payment = user.make_a_payment_with_stripe(valid_token)
+        expected_stuff  = {user_id: user.id, from: 'stripe', to: user.id, amount: 0,
+                          payment_processed: false, error_message: 'Could not pay : Amount too low'}
+        expect(payment).to match_attributes_of expected_stuff
         expect(user.account.balance).to eq 0
       end
       it 'dont accept amount < 3000' do
         expect(Stripe::Charge).to_not receive(:create)
-        payment_information = user.make_a_payment_with_stripe(2999, {token: stripe_helper.generate_card_token})
+        payment = user.make_a_payment_with_stripe(2999, {token: stripe_helper.generate_card_token})
         expected_stuff      = {user_id: user.id, from: 'stripe', to: user.id, amount: 2999,
                                payment_processed: false, error_message: 'Could not pay : Amount too low'}
-        expect(payment_information).to eq expected_stuff
+        expect(payment).to match_attributes_of expected_stuff
         expect(user.account.balance).to eq 0
       end
       it 'dont accept null amount' do
         expect(Stripe::Charge).to_not receive(:create)
-        payment_information = user.make_a_payment_with_stripe(0, {token: stripe_helper.generate_card_token})
+        payment = user.make_a_payment_with_stripe(0, {token: stripe_helper.generate_card_token})
         expected_stuff      = {user_id: user.id, from: 'stripe', to: user.id, amount: 0,
                                payment_processed: false, error_message: 'Could not pay : Amount too low'}
-        expect(payment_information).to eq expected_stuff
+        expect(payment).to match_attributes_of expected_stuff
         expect(user.account.balance).to eq 0
       end
     end
 
     context 'Invalid Stripe params' do
-      #before :each { StripeMock.prepare_card_error(:card_declined) }
       it 'dont charge customer' do
         expect(Stripe::Charge).to receive(:create)
         user.make_a_payment_with_stripe(3000)
       end
+      it 'create a new payment record' do
+        expect{user.make_a_payment_with_stripe(4500)}.to change(Payment, :count).by 1
+      end
       it 'return error information' do
-        payment_information = user.make_a_payment_with_stripe(3000)
-        expected_stuff      = {user_id: user.id, from: 'stripe', to: user.id, amount: 3000,
-                               payment_processed: false, error_message: 'Could not pay : Token absent or corrupted'}
-        expect(payment_information).to eq expected_stuff
+        payment = user.make_a_payment_with_stripe(3000)
+        expected_stuff = {user_id: user.id, from: 'stripe', to: user.id, amount: 3000,
+                          payment_processed: false, error_message: 'Could not pay : Token absent or corrupted'}
+        expect(payment).to match_attributes_of expected_stuff
       end
       it 'dont change user balance' do
         user.make_a_payment_with_stripe(3000)

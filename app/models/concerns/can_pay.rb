@@ -14,8 +14,16 @@ module CanPay
       error_message = "Not enough money : #{student_balance}"
     end
 
-    return {user_id: self.id, from: 'self', to: teacher.id, amount: amount,
-           payment_processed: payment_processed, error_message: error_message}
+    payment_attributes = {from: 'self', to: teacher.id, amount: amount,
+                          payment_processed: payment_processed,
+                          error_message: error_message}
+    payment = self.payments.build(payment_attributes)
+
+    if payment.save
+      return payment
+    else
+      raise "CanPay Error : could not save Transfer payment record"
+    end
 
   end
 
@@ -45,8 +53,16 @@ module CanPay
       error_message = "Could not pay : Amount too low"
     end
 
-    return {user_id: self.id, from: 'stripe', to: self.id, amount: amount,
-           payment_processed: payment_processed, error_message: error_message}
+    payment_attributes = {user_id: self.id, from: 'stripe', to: self.id, amount: amount,
+                          payment_processed: payment_processed,
+                          error_message: error_message}
+    payment = self.payments.build(payment_attributes)
+    if payment.save
+     return payment
+    else
+     raise "CanPay Error : could not save Stripe payment record"
+    end
+
   end
 
   private

@@ -32,22 +32,13 @@ class LessonsController < ApplicationController
   # POST /lessons/:id/pay
   def pay
     teacher = @lesson.teacher
-    payment_info = current_user.transfer_money_to_teacher teacher, 3000
-
-    @payment =  current_user.payments.build(payment_info)
-
-    if @payment.save
-      if @payment.payment_processed
-        flash[:notice] = t('.lesson_payed', teacher: teacher.email)
-        redirect_to lessons_path
-      else
-        flash[:alert] = @payment.error_message
-        redirect_to payments_path
-      end
+    @payment =  current_user.transfer_money_to_teacher teacher, 3000
+    if @payment.payment_processed
+      flash[:notice] = t('.lesson_payed', teacher: teacher.email)
+      redirect_to lessons_path
     else
-      #something went very wrong here, should not happen
-      flash[:alert] = "CanPay Error : Payment record could not be saved."
-      redirect_to root_path
+      flash[:alert] = @payment.error_message
+      redirect_to payments_path
     end
   end
 

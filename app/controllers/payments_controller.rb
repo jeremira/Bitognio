@@ -12,20 +12,11 @@ class PaymentsController < ApplicationController
   def create
     amount = params[:amount].to_i
     token  = params[:stripeToken]
-
-    #process payment and update user balance
-    payment_info = current_user.make_a_payment_with_stripe(amount, {token: token} )
-
-    @payment =  current_user.payments.build(payment_info)
-    if @payment.save
-      if @payment.payment_processed
-        flash[:notice] = 'Payment successful !'
-      else
-        flash[:alert] = "Payment could not be processed"
-      end
+    @payment =  current_user.make_a_payment_with_stripe(amount, {token: token} )
+    if @payment.payment_processed
+      flash[:notice] = 'Payment successful !'
     else
-      #something went very wrong here, should not happen
-      flash[:alert] = "Payment record could not be saved."
+      flash[:alert] = "Payment could not be processed"
     end
     redirect_to payments_path
   end
