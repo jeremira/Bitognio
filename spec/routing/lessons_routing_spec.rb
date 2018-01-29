@@ -23,6 +23,10 @@ RSpec.describe LessonsController, type: :routing do
       expect(:post => "lessons/1/pay").to route_to('lessons#pay', :id => "1")
     end
 
+    it "routes to #approve" do
+      expect(:post => "lessons/1/approve").to route_to('lessons#approve', :id => "1")
+    end
+
     it "routes to #create" do
       expect(:post => "/lessons").to route_to("lessons#create")
     end

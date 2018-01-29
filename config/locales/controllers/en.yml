@@ -7,5 +7,7 @@ en:
       lesson_canceled: "Lesson canceled !"
     pay:
       lesson_payed: "This lesson has been pay to %{teacher}. Thank you !"
+    approve:
+      lesson_confirmed: "Lesson confirmed !"
     update:
       lesson_updated: 'Lesson was successfully updated.'

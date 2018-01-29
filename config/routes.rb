@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   resources :lessons
   resources :payments
 
-  post 'lessons/:id/pay', to: 'lessons#pay', as: 'pay_lesson'
+  post 'lessons/:id/pay',     to: 'lessons#pay',     as: 'pay_lesson'
+  post 'lessons/:id/approve', to: 'lessons#approve', as: 'approve_lesson'
 
   # Static pages
   get  'home/index'

@@ -1,12 +1,16 @@
 class LessonsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_lesson, only: [:update, :destroy, :pay]
+  before_action :set_lesson, only: [:update, :destroy, :pay, :approve]
   before_action :set_available_teachers, only: [:new, :create, :edit]
 
   # GET /lessons
   # GET /lessons.json
   def index
-    @lessons = current_user.student_lessons
+    if current_user.is_a_teacher
+      @lessons = current_user.teacher_lessons.where(confirmed: false)
+    else
+      @lessons = current_user.student_lessons.where(payed: false)
+    end
   end
 
   # GET /lessons/new
@@ -34,12 +38,21 @@ class LessonsController < ApplicationController
     teacher = @lesson.teacher
     @payment =  current_user.transfer_money_to_teacher teacher, 3000
     if @payment.payment_processed
+      @lesson.payed = true
+      @lesson.payment_id = @payment.id
+      @lesson.save
       flash[:notice] = t('.lesson_payed', teacher: teacher.email)
       redirect_to lessons_path
     else
       flash[:alert] = @payment.error_message
       redirect_to payments_path
     end
+  end
+
+  def approve
+    @lesson.confirmed = true
+    @lesson.save
+    redirect_to lessons_path, notice: t('.lesson_confirmed')
   end
 
   # PATCH/PUT /lessons/1

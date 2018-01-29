@@ -17,6 +17,15 @@ Given /^Tomoko register and log in$/ do
   click_button 'Sign up', match: :first
 end
 
+Given /^Robert register and log in$/ do
+  visit root_path
+  click_link 'Sign up', match: :first
+  fill_in :user_email, with: 'robert@cucumber.com'
+  fill_in :user_password, with: 'password1234'
+  fill_in :user_password_confirmation, with: 'password1234'
+  click_button 'Sign up', match: :first
+end
+
 Given /^Tomoko is logged in$/ do
   visit root_path
   click_link 'Log in', match: :first
@@ -36,6 +45,16 @@ Given /^Teacher Robert exist$/ do
   robert.is_a_teacher = true
   robert.save
   expect(User.where(is_a_teacher: true).count).to eq 1
+  click_link 'Log out'
+end
+
+Given /^Student Tomoko exist$/ do
+  visit root_path
+  click_link 'Sign up', match: :first
+  fill_in :user_email, with: 'tomoko@cucumber.com'
+  fill_in :user_password, with: 'password1234'
+  fill_in :user_password_confirmation, with: 'password1234'
+  click_button 'Sign up', match: :first
   click_link 'Log out'
 end
 

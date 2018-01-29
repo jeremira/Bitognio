@@ -1,29 +1,9 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Lessons#INDEX</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="7"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @lessons.each do |lesson| %>
-      <tr>
-        <td><%= lesson.date %></td>
-        <td><%= lesson.time %></td>
-        <td><%= lesson.teacher.email %></td>
-        <td><%= link_to t(:__show), lesson %></td>
-        <td><%= link_to t(:__edit), edit_lesson_path(lesson) %></td>
-        <td><%= link_to t(:__pay_lesson), pay_lesson_path(lesson), method: :post %></td>
-        <td><%= link_to t(:__cancel), lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<% if current_user.is_a_teacher %>
+  <%= render 'teacher_lessons', collection: @lessons %>
+<% else %>
+  <%= render 'student_lessons', collection: @lessons %>
+<% end %>
 
 <%= link_to t(:__new_request), new_lesson_path %>

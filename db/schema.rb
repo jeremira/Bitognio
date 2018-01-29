@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180118071535) do
+ActiveRecord::Schema.define(version: 20180129085735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 20180118071535) do
     t.boolean "confirmed", default: false
     t.boolean "payed", default: false
     t.time "time"
+    t.bigint "payment_id"
+    t.index ["payment_id"], name: "index_lessons_on_payment_id"
   end
 
   create_table "payments", force: :cascade do |t|

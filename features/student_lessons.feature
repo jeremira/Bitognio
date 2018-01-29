@@ -23,6 +23,7 @@ Scenario: Tomoko pay her lesson
   And Robert confirm the lesson
   When I click on link 'Pay my lesson'
   Then I should see 'This lesson has been pay to robert@cucumber.com. Thank you !'
+  And  I should not see 'Pay my lesson'
 
 Scenario: Tomoko wanna pay her lesson but she got no money because it's rough time man recession and stuff
   Given I request a new lesson
@@ -30,3 +31,5 @@ Scenario: Tomoko wanna pay her lesson but she got no money because it's rough ti
   When I click on link 'Pay my lesson'
   Then I should see 'Not enough money : 0'
   And I should see 'My account balance is : 0 Yen'
+  When I click on link 'Lessons'
+  Then I should see 'Pay my lesson'

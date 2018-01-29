@@ -1,4 +1,3 @@
-
 When /^I request a new lesson$/ do
   visit lessons_path
   click_link 'New lesson request'
@@ -6,6 +5,20 @@ When /^I request a new lesson$/ do
   fill_in 'lesson[time]', with: '17:30:00'
   choose 'robert@cucumber.com'
   click_button 'Request lesson'
+end
+
+When /^Tomoko requested a new lesson$/ do
+  tomoko = User.find_by_email('tomoko@cucumber.com')
+  robert = User.find_by_email('robert@cucumber.com')
+  lesson =tomoko.student_lessons.build(teacher_id: robert.id, date: "2099-01-17", time: "14:30:00")
+  expect{lesson.save}.to change(Lesson, :count).by 1
+end
+
+When /^Tomoko pay the lesson$/ do
+  tomoko = User.find_by_email('tomoko@cucumber.com')
+  lesson =tomoko.student_lessons.first
+  lesson.payed = true
+  lesson.save
 end
 
 When /^I request a lesson without providing a date and time$/ do
