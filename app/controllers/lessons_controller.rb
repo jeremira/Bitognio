@@ -7,9 +7,10 @@ class LessonsController < ApplicationController
   # GET /lessons.json
   def index
     if current_user.is_a_teacher
-      @lessons = current_user.teacher_lessons.where(confirmed: false)
+      @request_lessons   = current_user.teacher_lessons.where(confirmed: false)
+      @confirmed_lessons = current_user.teacher_lessons.where(confirmed: true)
     else
-      @lessons = current_user.student_lessons.where(payed: false)
+      @lessons = current_user.student_lessons
     end
   end
 

@@ -8,6 +8,11 @@
         </span>
         <%= t('.welcome', email: current_user.email) %>
       </h4>
+      <% if current_user.is_a_teacher %>
+        <p>is a teacher </p>
+      <% else %>
+        <p>is a student </p>
+      <% end %>
       <%= link_to t(:__new_payment), '#' %> | <%= link_to t(:payments_history), '#' %>
     </div>
   </div>

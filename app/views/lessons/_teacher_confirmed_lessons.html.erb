@@ -1,0 +1,30 @@
+<h2>Confirmed lessons</h2>
+<table>
+  <thead>
+    <tr>
+      <th colspan="7"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @confirmed_lessons.each do |lesson| %>
+      <tr>
+        <td><%= lesson.date %></td>
+        <td><%= lesson.time %></td>
+        <td><%= "Lesson with #{lesson.student.email}" %></td>
+        <td>
+          <% if lesson.payed %>
+            <p>This lesson has been payed !</p>
+          <% else %>
+            <p>This lesson is not pay yet</p>
+          <% end %>
+        </td>
+        <td><%= link_to t(:__show), lesson %></td>
+        <td><%= link_to t(:__edit), edit_lesson_path(lesson) %></td>
+        <td><%= link_to t(:__cancel), lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

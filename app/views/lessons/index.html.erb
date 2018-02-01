@@ -1,7 +1,8 @@
 <h1>Lessons#INDEX</h1>
 
 <% if current_user.is_a_teacher %>
-  <%= render 'teacher_lessons', collection: @lessons %>
+  <%= render 'teacher_requested_lessons', collection: @request_lessons %>
+  <%= render 'teacher_confirmed_lessons', collection: @confirmed_lessons %>
 <% else %>
   <%= render 'student_lessons', collection: @lessons %>
 <% end %>
