@@ -1,24 +1,17 @@
-<h2>New requests :</h2>
-<table>
-  <thead>
-    <tr>
-      <th colspan="7"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @request_lessons.each do |lesson| %>
-      <tr>
-        <td><%= lesson.date %></td>
-        <td><%= lesson.time %></td>
-        <td><%= "New request from #{lesson.student.email}" %></td>
-        <td><%= link_to t(:__show), lesson %></td>
-        <td><%= link_to t(:__edit), edit_lesson_path(lesson) %></td>
-        <td><%= link_to t(:__approve_lesson), approve_lesson_path(lesson), method: :post %></td>
-        <td><%= link_to t(:__cancel), lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<% @request_lessons.each do |lesson| %>
+  <div class="col-xs-12 col-md-6 col-lg-3">
+   <div class="intro-quarter text-center">
+     <span class="fa-stack fa-2x color-green">
+       <i class="fa fa-square-o fa-stack-2x"></i>
+       <i class="fa fa-home fa-stack-1x"></i>
+     </span>
+     <div class="separate-green"></div>
+     <h5><%= lesson.date %></h5>
+     <p>New request from <%= link_to lesson.student.email, '#' %></p>
+     <%= link_to t(:__approve_lesson), approve_lesson_path(lesson), method: :post, class: 'btn btn-block btn-custom' %>
+     <p class="separate-green"><%= link_to t(:__cancel), lesson,
+          method: :delete, data: { confirm: 'Are you sure?' } %></p>
+   </div>
+ </div>
+<% end %>
+  

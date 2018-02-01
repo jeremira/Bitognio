@@ -1,29 +1,97 @@
-<h1>Lessons#INDEX</h1>
+<section class="content-block container-fluid bot-space">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 offset-md-3">
+      <h4 class="separate-green">
+        <span class="fa-stack color-green">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-home fa-stack-1x"></i>
+        </span>
+        Plan your lessons :
+      </h4>
+    </div>
+    <div class="col-xs-12 col-md-6 offset-md-3">
+        <%= link_to 'Find a teacher', new_lesson_path, class: 'btn btn-block btn-custom' %>
+        <%= link_to 'New lesson request', new_lesson_path, class: 'btn btn-block btn-custom' %>
+    </div>
+  </div>
+</section>
 
 <% if current_user.is_a_teacher %>
-  <%= render 'teacher_requested_lessons', collection: @request_lessons %>
-  <%= render 'teacher_confirmed_lessons', collection: @confirmed_lessons %>
+  <section class="content-block container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <h4 class="separate-green">
+          <span class="fa-stack color-green">
+            <i class="fa fa-square-o fa-stack-2x"></i>
+            <i class="fa fa-home fa-stack-1x"></i>
+          </span>
+          Request
+        </h4>
+      </div>
+    </div>
+    <div class="row">
+      <%= render 'teacher_requested_lessons', collection: @request_lessons %>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <h4 class="separate-green">
+          <span class="fa-stack color-green">
+            <i class="fa fa-square-o fa-stack-2x"></i>
+            <i class="fa fa-home fa-stack-1x"></i>
+          </span>
+          Confirmed
+        </h4>
+      </div>
+    </div>
+    <div class="row">
+      <%= render 'teacher_confirmed_lessons', collection: @confirmed_lessons %>
+    </div>
+  </section>
 <% else %>
-  <%= render 'student_lessons', collection: @not_payed_lessons %>
-  <h2>Payed lesson</h2>
-  <table>
-    <thead>
-      <tr>
-        <th colspan="7"></th>
-      </tr>
-    </thead>
-    <tbody>
+  <section class="content-block container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <h4 class="separate-green">
+          <span class="fa-stack color-green">
+            <i class="fa fa-square-o fa-stack-2x"></i>
+            <i class="fa fa-home fa-stack-1x"></i>
+          </span>
+          Non-payed
+        </h4>
+      </div>
+    </div>
+    <div class="row">
+      <%= render 'student_lessons', collection: @not_payed_lessons %>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <h4 class="separate-green">
+          <span class="fa-stack color-green">
+            <i class="fa fa-square-o fa-stack-2x"></i>
+            <i class="fa fa-home fa-stack-1x"></i>
+          </span>
+          Payed
+        </h4>
+      </div>
+    </div>
+    <div class="row">
       <% @payed_lessons.each do |lesson| %>
-        <tr>
-          <td><%= lesson.date %></td>
-          <td><%= lesson.time %></td>
-          <td><%= lesson.teacher.email %></td>
-          <td><%= link_to t(:__show), lesson %></td>
-        </tr>
+        <div class="col-xs-12 col-md-6 col-lg-3">
+         <div class="intro-quarter text-center">
+           <span class="fa-stack fa-2x color-green">
+             <i class="fa fa-square-o fa-stack-2x"></i>
+             <i class="fa fa-home fa-stack-1x"></i>
+           </span>
+           <div class="separate-green"></div>
+           <h5><%= lesson.date %></h5>
+           <p><%= link_to lesson.teacher.email, '#' %></p>
+           <%= link_to 'Contact teacher', '#', class: 'btn btn-block btn-custom' %>
+           <p class="separate-green">Gambaru, lesson is coming</p>
+         </div>
+       </div>
       <% end %>
-    </tbody>
-  </table>
-
+    </div>
+</section>
 <% end %>
-
-<%= link_to t(:__new_request), new_lesson_path %>

@@ -1,28 +1,20 @@
-<h2>Not payed lesson</h2>
-<table>
-  <thead>
-    <tr>
-      <th colspan="7"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @not_payed_lessons.each do |lesson| %>
-      <tr>
-        <td><%= lesson.date %></td>
-        <td><%= lesson.time %></td>
-        <td><%= lesson.teacher.email %></td>
-        <td><%= link_to t(:__show), lesson %></td>
-        <td><%= link_to t(:__edit), edit_lesson_path(lesson) %></td>
-        <% if lesson.confirmed %>
-          <td><%= link_to t(:__pay_lesson), pay_lesson_path(lesson), method: :post %></td>
-        <% else %>
-          <td>Waiting for confirmation from teacher...</td>
-        <% end %>
-        <td><%= link_to t(:__cancel), lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<% @not_payed_lessons.each do |lesson| %>
+  <div class="col-xs-12 col-md-6 col-lg-3">
+   <div class="intro-quarter text-center">
+     <span class="fa-stack fa-2x color-green">
+       <i class="fa fa-square-o fa-stack-2x"></i>
+       <i class="fa fa-home fa-stack-1x"></i>
+     </span>
+     <div class="separate-green"></div>
+     <h5><%= lesson.date %></h5>
+     <p><%= link_to lesson.teacher.email, '#' %></p>
+     <% if lesson.confirmed %>
+      <%= link_to t(:__pay_lesson), pay_lesson_path(lesson), class: 'btn btn-block btn-custom',
+                 method: :post, data: { confirm: 'Pay this lesson ?' }  %>
+     <% else %>
+        <p>Waiting for confirmation from teacher...</p>
+     <% end %>
+     <p class="separate-green"><%= link_to t(:__cancel), lesson, method: :delete, data: { confirm: 'Are you sure ?' } %></p>
+   </div>
+ </div>
+<% end %>
