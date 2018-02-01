@@ -2,7 +2,8 @@ Feature: A student can look for teacher and request a lesson
 
 Background:
   Given Teacher Robert exist
-  And Tomoko register and log in
+  And   Student Tomoko exist
+  And Tomoko is log in
 
 Scenario: Tomoko request a new lesson with Robert
   Given I request a new lesson

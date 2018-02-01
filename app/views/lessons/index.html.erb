@@ -4,7 +4,26 @@
   <%= render 'teacher_requested_lessons', collection: @request_lessons %>
   <%= render 'teacher_confirmed_lessons', collection: @confirmed_lessons %>
 <% else %>
-  <%= render 'student_lessons', collection: @lessons %>
+  <%= render 'student_lessons', collection: @not_payed_lessons %>
+  <h2>Payed lesson</h2>
+  <table>
+    <thead>
+      <tr>
+        <th colspan="7"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @payed_lessons.each do |lesson| %>
+        <tr>
+          <td><%= lesson.date %></td>
+          <td><%= lesson.time %></td>
+          <td><%= lesson.teacher.email %></td>
+          <td><%= link_to t(:__show), lesson %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
 <% end %>
 
 <%= link_to t(:__new_request), new_lesson_path %>

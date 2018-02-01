@@ -1,4 +1,4 @@
-Feature: A new comer can create his account and log-in on the site
+Feature: A new user can create his account and log-in on the site
 
 Scenario: A student succesfully create a new account
   Given I am on the home page

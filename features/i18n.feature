@@ -4,7 +4,7 @@ Scenario: The website is displayed in English by default
   Given I am on the home page
   Then The website should be displayed in english
 
-Scenario: Student can switch beetween English and Japanese version
+Scenario: User can switch beetween English and Japanese version
   Given I am on the home page
   And I click the japanese flag
   Then The website should be displayed in japanese

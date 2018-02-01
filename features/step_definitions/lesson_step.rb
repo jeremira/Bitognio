@@ -34,6 +34,7 @@ When /^Robert confirm the lesson$/ do
   lesson.confirmed = true
   lesson.save
   expect(Lesson.where(confirmed: true).count).to eq 1
+  visit lessons_path
 end
 
 When /^I have some funds$/ do

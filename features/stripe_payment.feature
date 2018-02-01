@@ -1,8 +1,8 @@
 Feature: Add money to your account balance using stripe/Credit card
 
 Scenario: A student can make payments
-  Given I am a registered student
-  And Tomoko is logged in
+  Given Student Tomoko exist
+  And Tomoko is log in
   And I am on the home page
   When I click on link 'Payments'
   Then I should see 'My account balance is : 0 Yen'

@@ -10,7 +10,8 @@ class LessonsController < ApplicationController
       @request_lessons   = current_user.teacher_lessons.where(confirmed: false)
       @confirmed_lessons = current_user.teacher_lessons.where(confirmed: true)
     else
-      @lessons = current_user.student_lessons
+      @payed_lessons = current_user.student_lessons.where(payed: true)
+      @not_payed_lessons = current_user.student_lessons.where(payed: false)
     end
   end
 
