@@ -1,5 +1,30 @@
-<h1>New Lesson</h1>
-
-<%= render 'form', lesson: @lesson %>
-
-<%= link_to 'Back', lessons_path %>
+<section class="content-block container-fluid bot-space">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 offset-md-3">
+      <h4 class="separate-green">
+        <span class="fa-stack color-green">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-home fa-stack-1x"></i>
+        </span>
+        Ask for a new lesson
+      </h4>
+    </div>
+    <div class="col-xs-12 col-md-6 offset-md-3">
+        <%= render 'form', lesson: @lesson %>
+    </div>
+  </div>
+</section>
+<section class="content-block container-fluid bot-space">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 offset-md-3">
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <%= link_to 'Find a teacher', '#', class: 'btn btn-block btn-custom' %>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <%= link_to 'See my lessons', lessons_path, class: 'btn btn-block btn-custom' %>
+        </div>
+      </div>  
+    </div>
+  </div>
+</section>
