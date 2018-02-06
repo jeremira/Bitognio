@@ -16,39 +16,6 @@
   </div>
 </section>
 
-<% if current_user.is_a_teacher %>
-  <section class="content-block container-fluid">
-    <div class="row">
-      <div class="col-xs-12 col-md-6">
-        <h4 class="separate-green">
-          <span class="fa-stack color-green">
-            <i class="fa fa-square-o fa-stack-2x"></i>
-            <i class="fa fa-home fa-stack-1x"></i>
-          </span>
-          Request
-        </h4>
-      </div>
-    </div>
-    <div class="row">
-      <%= render 'teacher_requested_lessons', collection: @request_lessons %>
-    </div>
-    <br>
-    <div class="row">
-      <div class="col-xs-12 col-md-6">
-        <h4 class="separate-green">
-          <span class="fa-stack color-green">
-            <i class="fa fa-square-o fa-stack-2x"></i>
-            <i class="fa fa-home fa-stack-1x"></i>
-          </span>
-          Confirmed
-        </h4>
-      </div>
-    </div>
-    <div class="row">
-      <%= render 'teacher_confirmed_lessons', collection: @confirmed_lessons %>
-    </div>
-  </section>
-<% else %>
   <section class="content-block container-fluid">
     <div class="row">
       <div class="col-xs-12 col-md-6">
@@ -94,4 +61,3 @@
       <% end %>
     </div>
 </section>
-<% end %>

@@ -5,6 +5,10 @@ Background:
   And   Student Tomoko exist
   And Tomoko is log in
 
+Scenario: Tomoko can look for teacher and request lesson
+  Given I click on link 'Lessons'
+  Then I should see 'Plan your lessons :'
+
 Scenario: Tomoko request a new lesson with Robert
   Given I request a new lesson
   Then I should see 'Thanks, your request has been sent to Robert'

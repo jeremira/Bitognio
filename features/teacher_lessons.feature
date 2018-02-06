@@ -5,6 +5,10 @@ Background:
   And   Teacher Robert exist
   And   Robert is log in
 
+Scenario: Teacher cant request new lesson
+  Given I click on link 'Lessons'
+  Then I should not see 'Plan your lessons :'
+
 Scenario: Robert approve a request lesson
   Given Tomoko requested a new lesson
   And I click on link 'Lessons'

@@ -9,9 +9,11 @@ class LessonsController < ApplicationController
     if current_user.is_a_teacher
       @request_lessons   = current_user.teacher_lessons.where(confirmed: false)
       @confirmed_lessons = current_user.teacher_lessons.where(confirmed: true)
+      render 'teacher_index'
     else
       @payed_lessons = current_user.student_lessons.where(payed: true)
       @not_payed_lessons = current_user.student_lessons.where(payed: false)
+      render 'student_index'
     end
   end
 
