@@ -6,15 +6,9 @@
           <i class="fa fa-square-o fa-stack-2x"></i>
           <i class="fa fa-home fa-stack-1x"></i>
         </span>
-        <%= t('.welcome', email: current_user.email) %>
+          <%= t('.account_balance', balance: @balance) %>
       </h4>
-      <% if current_user.is_a_teacher %>
-        <p>is a teacher </p>
-      <% else %>
-        <p>is a student </p>
-        <p><%= link_to 'Become a teacher', '#' %></p>
-      <% end %>
-      <%= link_to t(:__new_payment), '#' %> | <%= link_to t(:payments_history), '#' %>
+      <p><%= link_to t(:__payments_history), '#' %></p>
     </div>
   </div>
 </section>

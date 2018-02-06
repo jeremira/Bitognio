@@ -6,3 +6,5 @@ Scenario: A student succesfully create a new account
   And I fill in and submit signup form with 'valid@cucumber.com' and 'password1234'
   Then I should see 'Welcome! You have signed up successfully.'
   And I should be logged in
+  When I click on link 'My account'
+  Then I should see 'is a student'

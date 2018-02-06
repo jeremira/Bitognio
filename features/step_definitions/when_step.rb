@@ -11,3 +11,7 @@ Given /^I click on (.+) '(.+)'$/ do |cliker, name|
     fail "#{cliker} is not a valid cliker"
   end
 end
+
+Given /^I check '(.+)'$/ do |checkbox|
+  check checkbox
+end

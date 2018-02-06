@@ -3,6 +3,11 @@ class PaymentsController < ApplicationController
 
   def index
     @balance = current_user.account.balance
+    if current_user.is_a_teacher
+      render 'teacher_index'
+    else
+      render 'student_index'
+    end
   end
 
   def new

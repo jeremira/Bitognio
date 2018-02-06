@@ -7,4 +7,13 @@ class UsersController < ApplicationController
     @payed_hours = @balance.to_i / 3000
   end
 
+  def upgrade
+    @user = current_user
+  end
+
+  def teacherupgrade
+    #put method
+    #update user is a teacher and account info
+  end
+
 end

@@ -7,7 +7,9 @@ en:
       leave_a_message: "What can we help ?"
       send_message: "Send my message !"
   payments:
-    index:
+    teacher_index:
+      account_balance: 'My account balance is : %{balance} Yen.'
+    student_index:
       account_balance: 'My account balance is : %{balance} Yen.'
       make_a_new_payment: 'Make a new payment'
       1_hour: '1 hour'

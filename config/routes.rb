@@ -7,9 +7,12 @@ Rails.application.routes.draw do
 
   #Ressources
   resources :users, only: :show
-  resources :lessons
+  get 'users/:id/upgrade', to: 'users#upgrade',        as: 'become_a_teacher'
+  put 'users/:id/upgrade', to: 'users#teacherupgrade', as: 'teacherupgrade'
+
   resources :payments
 
+  resources :lessons
   post 'lessons/:id/pay',     to: 'lessons#pay',     as: 'pay_lesson'
   post 'lessons/:id/approve', to: 'lessons#approve', as: 'approve_lesson'
 
