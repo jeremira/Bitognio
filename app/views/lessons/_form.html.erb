@@ -12,13 +12,22 @@
   <% end %>
 
   <div class="form-group">
-    <% @available_teachers.each do |teacher| %>
-      <div class="col-xs-6 col-md-4 col-lg-3">
-        <%= label :teacher_id, teacher.id, teacher.email %>
-        <%= form.radio_button :teacher_id, teacher.id, id: "teacher_id_#{teacher.id}" %>
+    <h5>Choose your teacher</h5>
+
+    <%= form.collection_radio_buttons(:teacher_id, @available_teachers, :id, :email) do |button| %>
+      <div class="col-xs-6 col-md-4 col-lg-3 select-teacher form-check-inline">
+        <%= button.label do %>
+          <%= button.radio_button +
+              image_tag('default_avatar.jpg', class: 'img-thumbnail') +
+              content_tag( 'p', truncate(button.object.email, length: 12)) %>
+        <% end %>
       </div>
     <% end %>
   </div>
+
+
+
+
   <div class="form-group">
     <%= form.date_field :date, class: 'form-control'%>
   </div>

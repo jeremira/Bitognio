@@ -1,3 +1,22 @@
+
+.select-teacher > label > input[type="radio"] {
+  position: fixed;
+  opacity: 0;
+}
+
+.select-teacher > label > input[type="radio"] + img + p {
+    text-align: center;
+    text-transform: uppercase;
+    margin: 3px 0;
+    padding: 2px;
+    border: 2px solid $color-blue;
+}
+
+.select-teacher > label > input[type="radio"]:checked + img {
+    padding: 3px;
+    border: 3px solid $color_red;
+}
+
 .top-hat {
   height: 150px;
   position: relative;
