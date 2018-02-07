@@ -40,6 +40,7 @@ module CanPay
           :currency => "usd",
           :description => "Lesson charge",
           :source => token,
+          :transfer_group => "student_#{self.id}"
         )
       rescue Stripe::CardError => e
         error_message =  e.message
