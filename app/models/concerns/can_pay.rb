@@ -8,6 +8,7 @@ module CanPay
 
     if student_balance >= amount
       remove_money_from_account_balance self, amount
+      #transfer money to stripe connect here
       add_money_to_account_balance teacher, amount
       payment_processed = true
     else

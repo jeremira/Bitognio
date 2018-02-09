@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :payments
   has_one  :account
+  has_one  :career
 
   has_many :student_lessons, class_name: 'Lesson', foreign_key: :student_id
   has_many :teacher_lessons, class_name: 'Lesson', foreign_key: :teacher_id

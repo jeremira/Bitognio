@@ -1,0 +1,89 @@
+<%= form_with model: @career, local: true, class:'my-form' do |form| %>
+  <input type="hidden" name="token" id="token">
+<label>
+  <span>First Name</span>
+  <input class="inp-first-name" name="first_name">
+</label>
+<label>
+  <span>Last Name</span>
+  <input class="inp-last-name" name="last_name">
+</label>
+<fieldset>
+  <legend>Dob</legend>
+  <label>
+    <span>Day</span>
+    <input class="inp-dob-day" name="dob-day">
+  </label>
+  <label>
+    <span>Month</span>
+    <input class="inp-dob-month" name="dob-month">
+  </label>
+  <label>
+    <span>Year</span>
+    <input class="inp-dob-year" name="dob-year">
+  </label>
+</fieldset>
+<fieldset>
+  <legend>Address</legend>
+  <label>
+    <span>Street Address Line 1</span>
+    <input class="inp-street-address1" name="street_address1">
+  </label>
+  <label>
+    <span>City</span>
+    <input class="inp-city" name="city">
+  </label>
+  <label>
+    <span>Postal Code</span>
+    <input class="inp-zip" name="zip">
+  </label>
+</fieldset>
+<p>En cliquant sur ce bouton, vous acceptez <a href="#">nos Conditions Générales d'Utilisation</a>
+ainsi que les <a href="/connect-account/legal">Conditions d'Utilisation des Comptes Connectés Stripe</a>
+</p>
+<button>Submit</button>
+<% end %>
+
+<script>
+
+$( document ).on('turbolinks:load', function() {
+  console.log('Init ...');
+  // Assumes you've already included Stripe.js!
+  const stripe = Stripe('pk_test_4JjrvPRpFL7jhkhK58P2vjBJ');
+  const myForm = document.querySelector('.my-form');
+  myForm.addEventListener('submit', handleForm);
+
+  async function handleForm(event) {
+    event.preventDefault();
+
+    const result = await stripe.createToken('account', {
+      legal_entity: {
+        type: 'individual',
+        first_name: document.querySelector('.inp-first-name').value,
+        last_name: document.querySelector('.inp-last-name').value,
+        address: {
+          line1: document.querySelector('.inp-street-address1').value,
+          city: document.querySelector('.inp-city').value,
+          postal_code: document.querySelector('.inp-zip').value,
+        },
+        dob: {
+          day: parseInt(document.querySelector('.inp-dob-day').value),
+          month: parseInt(document.querySelector('.inp-dob-month').value),
+          year: parseInt(document.querySelector('.inp-dob-year').value),
+        }
+      },
+      tos_shown_and_accepted: true,
+    });
+
+    if (result.token) {
+      console.log('Youpe!');
+      console.log(result.token.id);
+      document.querySelector('#token').value = result.token.id;
+      myForm.submit();
+    }
+  }
+
+
+})
+
+</script>

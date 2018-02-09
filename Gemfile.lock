@@ -315,6 +315,10 @@ GEM
       sprockets (>= 3.0.0)
     stripe (3.9.0)
       faraday (~> 0.10)
+    stripe-rails (1.2.0)
+      rails (>= 3)
+      responders
+      stripe
     stripe-ruby-mock (2.5.0)
       dante (>= 0.2.0)
       multi_json (~> 1.0)
@@ -376,6 +380,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   stripe
+  stripe-rails
   stripe-ruby-mock (~> 2.5.0)
   turbolinks (~> 5)
   tzinfo-data

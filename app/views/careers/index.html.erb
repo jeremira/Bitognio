@@ -6,15 +6,10 @@
           <i class="fa fa-square-o fa-stack-2x"></i>
           <i class="fa fa-home fa-stack-1x"></i>
         </span>
-        <%= t('.welcome', email: current_user.email) %>
+        To become a teacher :
       </h4>
-      <% if current_user.is_a_teacher %>
-        <p>is a teacher </p>
-      <% else %>
-        <p>is a student </p>
-        <p><%= link_to 'Become a teacher', careers_path %></p>
-      <% end %>
-      <%= link_to t(:__new_payment), '#' %> | <%= link_to t(:payments_history), '#' %>
+      <p>Update blabla and infos on becoming a teacher here !</p>
+      <%= link_to 'Ok, got it !', new_career_path, class: 'btn btn-block btn-custom' %>
     </div>
   </div>
 </section>

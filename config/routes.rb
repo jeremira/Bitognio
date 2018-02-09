@@ -6,10 +6,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   #Ressources
-  resources :users, only: :show
-  get 'users/:id/upgrade', to: 'users#upgrade',        as: 'become_a_teacher'
-  put 'users/:id/upgrade', to: 'users#teacherupgrade', as: 'teacherupgrade'
-
+  resources :users,     only: :show
+  resources :careers,   only: [:index, :new, :create]
   resources :payments
 
   resources :lessons
