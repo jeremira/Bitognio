@@ -1,3 +1,62 @@
+<section class="content-block container-fluid bot-space">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 offset-md-3">
+      <h4 class="separate-green">
+        <span class="fa-stack color-green">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-home fa-stack-1x"></i>
+        </span>
+        Information to become a teacher :
+      </h4>
+    </div>
+    <div class="col-xs-12 col-md-6 offset-md-3">
+      <%= form_with model: @career, local: true do |form| %>
+        <% if @career.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger" role="alert">
+            <%= pluralize(@career.errors.count, "error") %> prohibited this career from being saved:
+            <ul>
+              <% @career.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <%= form.hidden_field :country, value: 'fr' %>
+        <div class="form-group">
+          <%= form.label :last_name, "Nom de famille" %>
+          <%= form.text_field :last_name, class: 'form-control'%>
+          <%= form.label :first_name, "Prénom" %>
+          <%= form.text_field :first_name, class: 'form-control'%>
+        </div>
+        <div class="form-group">
+          <%= form.label :dob, "Date de naissance" %>
+          <%= form.date_field :dob, class: 'form-control'%>
+        </div>
+        <div class="form-group">
+          <%= form.label :adress, "Adresse" %>
+          <%= form.text_field :adress, class: 'form-control'%>
+          <%= form.label :city, "Ville" %>
+          <%= form.text_field :city, class: 'form-control'%>
+          <%= form.label :zipcode, "Code Postal" %>
+          <%= form.text_field :zipcode, class: 'form-control'%>
+        </div>
+        <div class="form-group">
+          <%= form.label :iban, "Iban" %>
+          <%= form.text_field :iban, class: 'form-control'%>
+        </div>
+
+        <div class="actions">
+          <%= form.submit "Register as a teacher", class: 'btn btn-block btn-custom' %>
+        </div>
+
+
+      <% end %>
+
+
+    </div>
+  </div>
+</section>
+<!--
 <%= form_with model: @career, local: true, class:'my-form' do |form| %>
   <input type="hidden" name="token" id="token">
 <label>
