@@ -12,15 +12,18 @@ class CareersController < ApplicationController
 
   def create
     @career = current_user.build_career(career_params)
-
+    #DE89370400440532013000 fake stripe iban
     if @career.save
+
       begin
+  puts 'Starting stripe creation...'
+
         #create bank account token
         bank_token = Stripe::Token.create(
           :bank_account => {
-            :country => @career.country,
+            :country => 'FR',
             :currency => "eur",
-            :account_number => @career.iban
+            :account_number => "DE89370400440532013000"
           }
         )
         #create stripe account token
@@ -53,7 +56,9 @@ class CareersController < ApplicationController
         })
         #link bank account to stripe connect account
         account.external_accounts.create(external_account: bank_token)
-      rescue
+      rescue => e
+        puts "error !"
+        p e
         @career.destroy!
         redirect_to current_user, notice: 'Stripe creation error'
       else
