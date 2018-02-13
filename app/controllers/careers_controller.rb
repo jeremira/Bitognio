@@ -12,7 +12,7 @@ class CareersController < ApplicationController
 
   def create
     @career = current_user.build_career(career_params)
-    #DE89370400440532013000 fake stripe iban
+    #FR89370400440532013000 fake stripe iban
     if @career.save
 
       begin
@@ -23,7 +23,7 @@ class CareersController < ApplicationController
           :bank_account => {
             :country => 'FR',
             :currency => "eur",
-            :account_number => "DE89370400440532013000"
+            :account_number => @career.iban
           }
         )
         #create stripe account token
@@ -57,10 +57,9 @@ class CareersController < ApplicationController
         #link bank account to stripe connect account
         account.external_accounts.create(external_account: bank_token)
       rescue => e
-        puts "error !"
-        p e
+        puts e
         @career.destroy!
-        redirect_to current_user, notice: 'Stripe creation error'
+        redirect_to current_user, notice: 'We could not create your teacher account, please try again'
       else
         #save only first 6 digit of iban for privacy
         @career.iban = @career.iban[0..6]
@@ -69,9 +68,8 @@ class CareersController < ApplicationController
         current_user.save
         redirect_to current_user, notice: 'You are now a teacher !'
       end
-
     else
-      flash.now[:alert] = "Invalid imput to create a career"
+      flash.now[:alert] = "Something went wrong..."
       render :new
     end
 
