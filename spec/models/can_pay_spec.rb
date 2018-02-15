@@ -11,22 +11,28 @@ end
 
 describe CanPay  do
   let(:user)    {create :user}
-  let(:teacher) {create :user}
+  let(:teacher) {create :user, is_a_teacher: true}
+  let(:career)  {build :career, user: teacher}
 
   describe 'transfer_money_to_teacher' do
-
+    before {StripeMock.start}
+    after  {StripeMock.stop}
     context 'student has money' do
       before :each do
         user.account.balance = 10000
         user.save
+        teacher
+        allow(career).to receive(:create_stripe_connect_account).and_return({id: "acct_testcanpay"})
+        career.save
       end
-      it 'remove money from student account' do
+
+      it 'transfer fund to teacher' do
+        expect(career).to receive(:transfer_funds)
+        user.transfer_money_to_teacher teacher, 6000
+      end
+      it 'remove money from user account' do
         user.transfer_money_to_teacher teacher, 6000
         expect(user.account.balance).to eq 4000
-      end
-      it 'add money to teacher account' do
-        user.transfer_money_to_teacher teacher, 6000
-        expect(teacher.account.balance).to eq 6000
       end
       it 'create a new payment record' do
         expect{user.transfer_money_to_teacher teacher, 6000}.to change(Payment, :count).by 1
@@ -43,14 +49,17 @@ describe CanPay  do
       before :each do
         user.account.balance = 6000
         user.save
+        teacher
+        allow(career).to receive(:create_stripe_connect_account).and_return({id: "acct_testcanpay"})
+        career.save
       end
       it 'remove money from student account' do
         user.transfer_money_to_teacher teacher, 6000
         expect(user.account.balance).to eq 0
       end
-      it 'add money to teacher account' do
+      it 'transfer fund to teacher' do
+        expect(career).to receive(:transfer_funds)
         user.transfer_money_to_teacher teacher, 6000
-        expect(teacher.account.balance).to eq 6000
       end
       it 'create a new payment record' do
         expect{user.transfer_money_to_teacher teacher, 6000}.to change(Payment, :count).by 1
@@ -68,9 +77,9 @@ describe CanPay  do
         user.transfer_money_to_teacher teacher, 6000
         expect(user.account.balance).to eq 0
       end
-      it 'do NOT add money to teacher account' do
+      it 'do NOT transfer fund to teacher' do
+        expect(career).to_not receive(:transfer_funds)
         user.transfer_money_to_teacher teacher, 6000
-        expect(teacher.account.balance).to eq 0
       end
       it 'create a new payment record' do
         expect{user.transfer_money_to_teacher teacher, 6000}.to change(Payment, :count).by 1

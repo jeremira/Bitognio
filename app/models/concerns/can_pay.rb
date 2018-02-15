@@ -1,16 +1,26 @@
 #Add payment method to User like model
 module CanPay
 
+  def handle_money_transfer student, teacher, amount
+    begin
+      remove_money_from_account_balance student, amount
+      teacher.career.transfer_funds amount
+    rescue => e
+      return {payment_processed: false, error_message: "Could not transfer money : #{e}"}
+    else
+      return {payment_processed: true, error_message: nil}
+    end
+  end
+
   def transfer_money_to_teacher teacher, amount
     student_balance = account_balance self
     payment_processed = false
     error_message = nil
 
     if student_balance >= amount
-      remove_money_from_account_balance self, amount
-      #transfer money to stripe connect here
-      add_money_to_account_balance teacher, amount
-      payment_processed = true
+      infos = handle_money_transfer self, teacher, amount
+      payment_processed = infos[:payment_processed]
+      error_message     = infos[:error_message]
     else
       error_message = "Not enough money : #{student_balance}"
     end

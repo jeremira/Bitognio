@@ -1,7 +1,17 @@
 #Add payment method to User like model
 module ConnectStripe
 
+  def transfer_funds amount
+    #puts "Starting transfer..."
+    Stripe::Transfer.create(
+      :amount => amount,
+      :currency => "eur",
+      :destination => self.connect_account_id
+    )
+  end
+
   def create_stripe_connect_account
+    #puts "Creating stripe account..."
     career = self
     #create bank account token
     bank_token = Stripe::Token.create(
