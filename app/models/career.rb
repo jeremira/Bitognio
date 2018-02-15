@@ -1,62 +1,36 @@
 class Career < ApplicationRecord
+
+  #Handle stripe connect creation method
+  include ConnectStripe
+
   belongs_to :user
 
-  #before_create :create_connect_account
+  before_create :upgrading_to_teacher_account
+  after_create  :user_become_a_teacher
 
-  validates_presence_of [:last_name, :first_name, :dob, :country, :adress, :city, :zipcode]
-
-  def create_connect_account
-    token = params[:token]
-    acct = Stripe::Account.create({
-      :country => "US",
-      :type => "custom",
-      :account_token => token,
-    })
-    p acct
-  end
-
+  validates_presence_of [:last_name, :first_name, :dob, :country, :adress, :city, :zipcode, :iban]
 
   private
 
-    def boubacreate_connect_account
-      puts "Conect account creation....."
+    def upgrading_to_teacher_account
       begin
-        puts "Initiz..."
-        acct = Stripe::Account.create({
-          :country => "FR",
-          :type => "custom",
-          email: self.user.email,
-          external_account: "test_token",
-          legal_entity: {
-            first_name: self.first_name,
-            last_name: self.last_name,
-            address: {
-              city: self.city,
-              line1: self.address,
-              postal_code: self.zipcode
-            },
-            dob: {
-              day: self.dob.day,
-              month: self.dob.month,
-              year: self.dob.year
-            }
-          },
-          tos_acceptance: {
-            date: self.dob.to_time.utc.to_i,
-            ip: request.remote_ip
-          }
-        })
-      rescue
-        p acct
-        return false
+        account = self.create_stripe_connect_account
+      rescue => e
+        #career record is not created
+        throw :abort
       else
-        p acct
-        link_connect_account acct
+        #save only first 6 digit of iban for privacy
+        self.iban = self.iban[0..6]
+        self.connect_account_id = account[:id]
+        return true
       end
-
     end
 
-    def link_connect_account account_id
-      self.connect_account_id = account_id
+    def user_become_a_teacher
+      if self.connect_account_id
+        self.user.is_a_teacher = true
+        self.user.save
+      end
     end
+
 end

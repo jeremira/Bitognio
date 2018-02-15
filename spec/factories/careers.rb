@@ -7,6 +7,8 @@ FactoryBot.define do
     country "FR"
     adress "1, red keep"
     city "King's landing"
-    zipcode "01001"
+    zipcode "75014"
+    iban "FR89370400440532013000" #fake Stripe Connect Iban number
+    connect_account_id nil
   end
 end
