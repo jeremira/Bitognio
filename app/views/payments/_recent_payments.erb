@@ -1,0 +1,6 @@
+<h4>Last 10 payments</h4>
+<ul>
+  <% @recent_payments.each do |payment| %>
+   <li><%= payment.inspect %></li>
+  <% end %>
+</ul>

@@ -1,12 +1,10 @@
 When /^I fill in and submit teacher information form$/ do
-  expect(page).to have_text 'Teacher information'
-  fill_in :user_email, with: 'robert@cucumber.com'
-  fill_in :user_password, with: 'password1234'
-  fill_in :user_password_confirmation, with: 'password1234'
-  click_button 'Sign up', match: :first
-
-  choose 'robert@cu...'
-  fill_in 'lesson[date]', with: '2050-01-01'
-  fill_in 'lesson[time]', with: '17:30:00'
-  click_button 'Request lesson'
+  fill_in 'career[last_name]', with: 'Baratheon'
+  fill_in 'career[first_name]', with: 'Robert'
+  fill_in 'career[dob]', with: '01-01-1975'
+  fill_in 'career[adress]', with: 'rue du singe'
+  fill_in 'career[city]', with: 'Winterfell'
+  fill_in 'career[zipcode]', with: '75014'
+  fill_in 'career[iban]', with: 'FR89370400440532013000'
+  click_button 'Register as a teacher'
 end

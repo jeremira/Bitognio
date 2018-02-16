@@ -1,3 +1,5 @@
+
+
 Given /^Teacher Robert exist$/ do
   visit root_path
   click_link 'Sign up', match: :first
@@ -5,10 +7,20 @@ Given /^Teacher Robert exist$/ do
   fill_in :user_password, with: 'password1234'
   fill_in :user_password_confirmation, with: 'password1234'
   click_button 'Sign up', match: :first
+  click_link 'My account', match: :first
+  click_link 'Become a teacher'
+  click_link 'Ok, got it !'
+  fill_in 'career[last_name]', with: 'Baratheon'
+  fill_in 'career[first_name]', with: 'Robert'
+  fill_in 'career[dob]', with: '01-01-1975'
+  fill_in 'career[adress]', with: 'rue du singe'
+  fill_in 'career[city]', with: 'Winterfell'
+  fill_in 'career[zipcode]', with: '75014'
+  fill_in 'career[iban]', with: 'FR89370400440532013000'
+  click_button 'Register as a teacher'
   robert = User.where(email: 'robert@cucumber.com' ).first
-  robert.is_a_teacher = true
-  robert.save
   expect(User.where(is_a_teacher: true).count).to eq 1
+  expect(robert.career.connect_account_id).to match /^acct_/
   click_link 'Log out'
 end
 

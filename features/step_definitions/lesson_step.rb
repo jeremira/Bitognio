@@ -7,6 +7,15 @@ When /^I request a new lesson$/ do
   click_button 'Request lesson'
 end
 
+When /^Tomoko pay a lesson to Robert$/ do
+  tomoko = User.find_by_email('tomoko@cucumber.com')
+  robert = User.find_by_email('robert@cucumber.com')
+  lesson =tomoko.student_lessons.build(teacher_id: robert.id, date: "2099-01-17", time: "14:30:00", confirmed: true)
+  expect{lesson.save}.to change(Lesson, :count).by 1
+  visit lessons_path
+  click_link 'Pay my lesson'
+end
+
 When /^Tomoko requested a new lesson$/ do
   tomoko = User.find_by_email('tomoko@cucumber.com')
   robert = User.find_by_email('robert@cucumber.com')

@@ -16,6 +16,7 @@ class Career < ApplicationRecord
       begin
         account = self.create_stripe_connect_account
       rescue => e
+        #puts "Error creation : #{e}"
         #career record is not created
         throw :abort
       else

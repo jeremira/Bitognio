@@ -2,10 +2,13 @@ class PaymentsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @balance = current_user.account.balance
     if current_user.is_a_teacher
+      @career = current_user.career
+      @iban = current_user.career.iban
+      @recent_payments = current_user.payments #.where(payment_processed: true).last(10)
       render 'teacher_index'
     else
+      @balance = current_user.account.balance
       render 'student_index'
     end
   end

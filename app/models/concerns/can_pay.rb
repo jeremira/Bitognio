@@ -2,9 +2,11 @@
 module CanPay
 
   def handle_money_transfer student, teacher, amount
+    student_amount = amount
+    teacher_amount = amount - 750
     begin
-      remove_money_from_account_balance student, amount
-      teacher.career.transfer_funds amount
+      remove_money_from_account_balance student, student_amount
+      teacher.career.transfer_funds teacher_amount
     rescue => e
       return {payment_processed: false, error_message: "Could not transfer money : #{e}"}
     else
