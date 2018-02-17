@@ -1,4 +1,6 @@
 <div class="row"><h4>Last payed lessons</h4></div>
 <% @recent_payments.each do |payment| %>
-  <div class="row alert alert-success"><%= "Payment from #{payment.user.email} | #{payment.created_at} | Amount : #{payment.amount} Yen" %></div>
+  <div class="row alert alert-success">
+    <%= "Payment from #{payment.user.email} | #{payment.created_at} | Amount : #{payment.amount} Yen" %>
+  </div>
 <% end %>
