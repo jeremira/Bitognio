@@ -26,4 +26,4 @@ Scenario: Robert can see his balance
   And I am logged out
   And Robert is log in
   When I click on link 'Payments'
-  Then I should see '2250 Yen - Lesson payed the:'
+  Then I should see 'Payment from tomoko@cucumber.com'

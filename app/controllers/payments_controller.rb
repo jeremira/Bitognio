@@ -5,7 +5,7 @@ class PaymentsController < ApplicationController
     if current_user.is_a_teacher
       @career = current_user.career
       @iban = current_user.career.iban
-      @recent_payments = current_user.payments #.where(payment_processed: true).last(10)
+      @recent_payments = Payment.where(payment_processed:true, to: current_user.id).last(20)
       render 'teacher_index'
     else
       @balance = current_user.account.balance

@@ -73,6 +73,7 @@ module ConnectStripe
       #puts "Account : #{account}"
       #link bank account to stripe connect account
       account.external_accounts.create(external_account: bank_token)
+      puts "Stripe account created ! #{account.id}"
       return account
     end
   end

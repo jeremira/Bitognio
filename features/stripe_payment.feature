@@ -21,5 +21,5 @@ Scenario: A teacher cant make payments
   Given Teacher Robert exist
   And Robert is log in
   When I click on link 'Payments'
-  Then I should see 'My account balance is : 0 Yen'
+  Then I should see 'Your balance is send to your bank account starting with IBAN FR89370 on a weekly basis.'
   And I should not see 'Pay 3000 Yen'
