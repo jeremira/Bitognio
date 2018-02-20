@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180217034013) do
+ActiveRecord::Schema.define(version: 20180220013154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,9 @@ ActiveRecord::Schema.define(version: 20180217034013) do
     t.datetime "updated_at", null: false
     t.string "body"
     t.bigint "teacher_id"
+    t.bigint "postit_id"
+    t.boolean "interest", default: true
+    t.index ["postit_id"], name: "index_memos_on_postit_id"
     t.index ["teacher_id"], name: "index_memos_on_teacher_id"
   end
 
@@ -133,5 +136,6 @@ ActiveRecord::Schema.define(version: 20180217034013) do
 
   add_foreign_key "accounts", "users"
   add_foreign_key "careers", "users"
+  add_foreign_key "memos", "postits"
   add_foreign_key "payments", "users"
 end

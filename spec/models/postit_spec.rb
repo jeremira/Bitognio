@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Postit, type: :model do
-  let(:memo) {build :memo}
+  let(:postit) {build :memo}
   it "has a valid factory" do
-    expect(memo).to be_valid
+    expect(postit).to be_valid
   end
 end
