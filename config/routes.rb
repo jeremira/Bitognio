@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   post 'lessons/:id/pay',     to: 'lessons#pay',     as: 'pay_lesson'
   post 'lessons/:id/approve', to: 'lessons#approve', as: 'approve_lesson'
 
+  resources :postits, only: [:index, :create, :destroy]
+
   # Static pages
   get  'home/index'
   post 'home/contact'

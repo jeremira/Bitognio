@@ -1,0 +1,23 @@
+<%= form_with model: postit, local: true do |form| %>
+  <% if postit.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger" role="alert">
+      <%= pluralize(postit.errors.count, "error") %> prohibited this postit from being saved:
+      <ul>
+        <% postit.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= form.label :body, "Your message to our teacher :" %>
+    <%= form.text_area :body,  rows: '3',
+                       placeholder: 'Introduce yourself !', class: 'form-control' %>
+    <%= form.label :planning, "Your availabilities" %>
+    <%= form.text_area :planning, rows: '2',
+                       placeholder: 'Monday 14-16', class: 'form-control'%>
+  </div>
+    <div class="actions">
+    <%= form.submit "Find teachers !", class: 'btn btn-block btn-custom' %>
+  </div>
+<% end %>

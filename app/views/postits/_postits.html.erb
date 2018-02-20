@@ -1,0 +1,17 @@
+<% @postits.each do |postit| %>
+  <div class="col-xs-12 col-md-6 col-lg-4">
+    <p>I am looking for a teacher !</p>
+    <p><%= postit.body %></p>
+    <p><%= postit.planning %></p>
+    <p><%= link_to "I don't look anymore", postit, method: :delete, class: "btn btn-sm btn-danger" %></p>
+
+    <% if postit.memos.length > 0 %>
+      <% postit.memos.each do |memo| %>
+        <p><%= memo.teacher.nickname %></p>
+      <% end %>
+    <% else %>
+      <p>No teacher found yet, check back in a while !</p>
+    <% end %>
+
+  </div>
+<% end %>

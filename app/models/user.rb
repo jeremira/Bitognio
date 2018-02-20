@@ -6,8 +6,8 @@ class User < ApplicationRecord
   has_many :student_lessons, class_name: 'Lesson', foreign_key: :student_id
   has_many :teacher_lessons, class_name: 'Lesson', foreign_key: :teacher_id
 
-  has_many :postit, foreign_key: :student_id
-  has_many :memo,   foreign_key: :teacher_id
+  has_many :postits, foreign_key: :student_id
+  has_many :memos,   foreign_key: :teacher_id
 
   before_create :create_account_child
 
@@ -18,6 +18,10 @@ class User < ApplicationRecord
 
   #Handle payment method
   include CanPay
+
+  def nickname
+    self.email[0..5]
+  end
 
   def create_account_child
     build_account

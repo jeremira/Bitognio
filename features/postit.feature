@@ -1,4 +1,5 @@
 Feature: A student can post a postit to find an available teacher
+
 Background:
   Given Student Tomoko exist
   And   Teacher Robert exist

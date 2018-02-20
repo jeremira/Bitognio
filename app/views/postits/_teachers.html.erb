@@ -1,0 +1,8 @@
+<% @teachers.each do |teacher| %>
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 text-center">
+    <%= image_tag('default_avatar.jpg', class: 'img-thumbnail') %>
+    <h4><%= link_to teacher.nickname, teacher %></h4>
+    <%= link_to 'Book me !', '#', class: "btn btn-block btn-custom" %>
+    <%= link_to 'Contact me!', '#', class: "btn btn-block btn-custom" %>
+  </div>
+<% end %>

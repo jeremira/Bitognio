@@ -1,0 +1,36 @@
+<section class="content-block container-fluid bot-space">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 offset-md-3">
+      <h4 class="separate-green">
+        <span class="fa-stack color-green">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-home fa-stack-1x"></i>
+        </span>
+        Make a postit
+      </h4>
+      <p>To let know our teacher your available fill out that blablabla</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-lg-4">
+        <%= render 'form', postit: @postit %>
+    </div>
+    <%= render 'postits', collection: @postits %>
+  </div>
+</section>
+<section class="content-block container-fluid bot-space">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 offset-md-3">
+      <h4 class="separate-green">
+        <span class="fa-stack color-green">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-home fa-stack-1x"></i>
+        </span>
+        All our teachers :
+      </h4>
+    </div>
+  </div>
+  <div class="row">
+    <%= render 'teachers', collection: @teachers %>
+  </div>
+</section>
