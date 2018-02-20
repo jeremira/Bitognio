@@ -6,6 +6,21 @@ When /^I fill-in postit form and submit it$/ do
   click_button 'Find teachers !'
 end
 
-Then /^I thing$/ do
+When /^Tomoko has an open postit$/ do
+  tomoko = User.find_by_email('tomoko@cucumber.com')
+  postit = tomoko.postits.build(body: 'Hi, there', planning: 'monday')
+  postit.save
+end
 
+When /^Robert declared himself as available$/ do
+  robert = User.find_by_email('robert@cucumber.com')
+  postit = Postit.first
+  memo = postit.memos.build(body: 'Oulala')
+  memo.teacher_id = robert.id
+  memo.save
+end
+
+When /^I fill-in the date and time$/ do
+  fill_in 'lesson[date]', with: '2050-02-02'
+  fill_in 'lesson[time]', with: '18:15:00'
 end

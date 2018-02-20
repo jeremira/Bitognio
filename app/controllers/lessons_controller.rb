@@ -19,7 +19,8 @@ class LessonsController < ApplicationController
 
   # GET /lessons/new
   def new
-    @lesson = Lesson.new
+    teacher_id = params[:teacher_id]
+    @lesson = Lesson.new(teacher_id: teacher_id)
   end
 
   # POST /lessons

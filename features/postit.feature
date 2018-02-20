@@ -21,6 +21,8 @@ Scenario: Student can make a new postit and delete it
 Scenario: Student can book a lesson with availables teacher
   Given Tomoko has an open postit
   And Robert declared himself as available
+  When I click on link 'Lessons'
+  And I click on link 'Find a teacher'
   Then I should see 'Robert is available !'
   When I click on link 'Book a lesson'
   Then I should see 'Ask for a new lesson'

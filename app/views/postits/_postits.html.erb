@@ -7,7 +7,8 @@
 
     <% if postit.memos.length > 0 %>
       <% postit.memos.each do |memo| %>
-        <p><%= memo.teacher.nickname %></p>
+        <p><%= memo.teacher.nickname %> is available !</p>
+        <%= link_to 'Book a lesson', new_lesson_path(teacher_id: memo.teacher.id), class: 'btn btn-custom' %>
       <% end %>
     <% else %>
       <p>No teacher found yet, check back in a while !</p>
