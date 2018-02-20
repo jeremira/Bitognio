@@ -1,0 +1,2 @@
+class PostitsController < ApplicationController
+end
